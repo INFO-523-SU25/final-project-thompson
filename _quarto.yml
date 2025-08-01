@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: Classification of Animal Taxa Using Sexual Trait Features: Binary Presence and Evolution Rates
+  title: Trait-Based Prediction of Animal Taxa
   navbar:
     right:
       - icon: github
