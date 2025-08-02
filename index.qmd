@@ -20,4 +20,4 @@ jupyter: python3
 
 ## Abstract
 
-Will update abstract after working through the project. . .
+Will update abstract after working through the project...
