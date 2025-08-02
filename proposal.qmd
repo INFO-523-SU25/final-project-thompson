@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
+title: "Trait-Based Prediction of Animal Taxa"
 subtitle: "Proposal"
 author: 
-  - name: "Team Name - Team member 1, Team member 2,..."
+  - name: "Matthew Qi Lan Thompson"
     affiliations:
       - name: "College of Information Science, University of Arizona"
-description: "Project description"
+description: "This project will involve creating two predictive models for classifying animal taxa using binary presence and evolutionary rate features of sexual traits."
 format:
   html:
     code-tools: true
@@ -22,7 +22,31 @@ jupyter: python3
 ```{python}
 #| label: load-pkgs
 #| message: false
+
 import numpy as np
+import pandas as pd
+import os
+
+#machine learning models
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+
+#model evaluation and validation
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import (
+    accuracy_score, classification_report, confusion_matrix, roc_auc_score
+)
+
+#SHAP for model explainability
+import shap
+
+#visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import statsmodels.api as sm
+
 ```
 
 ## Dataset
@@ -30,16 +54,142 @@ import numpy as np
 ```{python}
 #| label: load-dataset
 #| message: false
+folder_path = /Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data
+
+#list of dataset paths
+folder_path = "/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data"
+evolution_path = os.path.join(folder_path, "animals_rateof_evolution.csv")
+family_path = os.path.join(folder_path, "family-related_data.csv")
+
+#loadsdatasets
+evolution_df = pd.read_csv(evolution_path)
+family_df = pd.read_csv(family_path)
+
+#dataset shapes
+evo_shape = evolution_df.shape
+fam_shape = family_df.shape
+
+#confirms loaded data
+print("Evolution Data:")
+print(evolution_df.head())
+
+print("\nFamily Data:")
+print(family_df.head())
+
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+Family-related metadata: 1 indicates trait presence, a whereas 0 indicates trait absence. SS: Combined (any sexually selected trait), A: Auditory, G: Gustatory, O: Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.
 
-Make sure to load the data and use inline code for some of this information.
+Rates of trait evolution metadata: A: Auditory, G: Gustatory, O:Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.
+
+```{python}
+#description of each dataset
+print("1. Evolution Rate Dataset")
+print(f"- File: animals_rateof_evolution.csv")
+print(f"- Dimensions: {evo_shape[0]} rows × {evo_shape[1]} columns")
+print("- Description: Contains continuous values representing the evolutionary rate of various sexual traits across different animal taxa.")
+
+print("2. Family-Level Trait Dataset")
+print(f"- File: family-related_data.csv")
+print(f"- Dimensions: {fam_shape[0]} rows × {fam_shape[1]} columns")
+print("- Description: Encodes presence (1) or absence (0) of various sexually selected traits (e.g., visual, auditory, male-male competition) at the family level.")
+```
+
+I chose these two datasets because the *family-related data* contains binary values (0 or 1) for various sexually selected traits, making it well-suited for training machine learning models across a diverse range of animal families. It could be great for hands-on experience with multi-class classification and feature selection. I may plan to use SHAP to help interpret the model's predictions and feature contributions primarily for both data depending on the model performance. The *evolutionary rates data* includes continuous values (some greater than 0 and some zeros), which allows for a comparative analysis to determine which approach—binary presence or continuous evolutionary rates—offers greater predictive power.
+
+Source: <https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321>
+
+(DataCite) Citation: Tuschhoff, E.; Wiens, John J. (2023). Data_Sheet_3_Evolution of sexually selected traits across animals.XLSX. Frontiers. Dataset. <https://doi.org/10.3389/fevo.2023.1042747.s003>
 
 ## Questions
 
-The two questions you want to answer.
+-   How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?
+-   Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
+
+------------------------------------------------------------------------
 
 ## Analysis plan
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+### Overview
+
+The primary objective is to assess and compare the predictive power and interpretability of both data.
+
+### Dataset Descriptions
+
+**1. Family-Level Trait Data (`family_df`)**
+
+-   Format: Binary indicators (`0` or `1`) for the presence or absence of sexually selected traits.
+
+-   Traits include: `SS`, `A`, `G`, `O`, `T`, `V`, `C`, `F`, `K`, `M`, `S`
+
+-   Each row represents a taxonomic family.
+
+-   The target variable will likely be a categorical label such as `Class` or a user-defined taxon.
+
+**2. Evolutionary Rates Data (`evolution_df`)**
+
+-   Format: Continuous numerical values representing the origin rates of the same traits listed above.
+
+-   Each row represents a taxonomic group.
+
+-   Target variable will match the one used in the binary dataset for comparison.
+
+### Exploratory Data Analysis (EDA)
+
+EDA will be performed separately for both datasets:
+
+-   Distribution plots for each trait.
+
+-   Correlation heatmaps to examine inter-trait relationships or correlation matrix
+
+-   Summary statistics for continuous traits.
+
+-   Count plots or bar charts showing trait prevalence by taxonomic group (e.g., class or family).
+
+### Modeling Approach
+
+For both datasets:
+
+1\. Data Preparation
+
+-   I will double check for any null values.
+
+-   I will use encode target variable (animals taxa) using `LabelEncoder`. For the evolutionary rates, I may convert any values \> 0 to 1 for the presence of sexually selected traits and hot-encode these numerical columns (sexually selected traits).
+
+-   For `evolution_df`, I will standardize feature values using `StandardScaler`.
+
+2\. Models to Use
+
+-   `DecisionTreeClassifier`
+
+-   `RandomForestClassifier`
+
+-   `LogisticRegression`
+
+3\. Evaluation Metrics
+
+-   Accuracy score
+
+-   Confusion matrix
+
+-   Classification report
+
+-   Cross-validation score (`cross_val_score`)
+
+-   ROC-AUC score
+
+4\. Model Interpretation
+
+-   I will use SHAP to interpret trained models.
+
+-   I will generate SHAP summary plots and bar plots to highlight influential traits.
+
+-   I will compare interpretability between models trained on binary and continuous data for the evolutionary rates.
+
+### Comparison and Interpretation
+
+-   I will interpret the classification performance across both data and answer both questions. Then, I will draw conclusions about which dataset format (binary or continuous) provides stronger predictive insights for question #2.
+
+-   I will analyze SHAP outputs to identify which traits contribute most to predictions.
+
+-   I may do a classification report on which family has sexually selected traits and explain the results (if I have time for the presentation).
