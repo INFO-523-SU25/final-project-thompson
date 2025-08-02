@@ -1,7 +1,8 @@
 {
-  "hash": "0e6b82ab6a634a8b8dc925668c0f975c",
+  "hash": "34c3059c2a2294976617140b11343159",
   "result": {
-    "markdown": "---\ntitle: Project title\nsubtitle: INFO 523 - Project Final\nauthor: Team name\nformat: html\neditor: visual\n---\n\n## Abstract\n\nAdd project abstract here.\n\n",
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Trait-Based Prediction of Animal Taxa\"\nsubtitle: \"INFO 523 - Final Project\"\nauthor: \n  - name: \"Matthew Qi Lan Thompson\"\n    affiliations:\n      - name: \"College of Information Science, University of Arizona\"\ndescription: \"This project uses machine learning methods to predict animal taxa based on sexually selected traits. It works with binary trait presence and continuous evolutionary rates to evaluate predictive performance and interpretability.\"\nformat:\n   html:\n    code-tools: true\n    code-overflow: wrap\n    embed-resources: true\neditor: visual\nexecute:\n  warning: false\n  echo: false\njupyter: python3\n---\n\n## Abstract\n\nWill update abstract after working through the project. . .\n\n",
     "supporting": [
       "index_files"
     ],
