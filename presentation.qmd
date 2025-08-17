@@ -56,15 +56,17 @@ penguins = sns.load_dataset('penguins').dropna()
 # Using Quarto for presentations
 
 ## Quarto
+
 -   The presentation is created using the Quarto CLI
 -   `##` sets the start of a new slide
 
 ## Layouts
+
 You can use plain text
 
 ::::: columns
 ::: {.column width="40%"}
--   or bullet points[^1]
+-   or bullet points\[\^1\]
 :::
 
 ::: {.column width="60%"}
@@ -127,6 +129,7 @@ plt.show()
 Testing...
 
 # A new section...
+
 ## Tables
 
 If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
@@ -157,6 +160,7 @@ Limitations:
 2.  There should not be spaces after the opening `$` or before the closing `$`.
 
 # Wrap up
+
 ## Feeling adventurous?
 
 -   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
