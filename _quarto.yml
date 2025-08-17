@@ -9,14 +9,16 @@ website:
       - icon: github
         href: https://github.com/INFO-523-SU25/final-project-thompson
     left:
+      - text: About
+        href: about.qmd
       - text: Project
         href: index.qmd
+      - text: Data
+        href: data.qmd
       - text: Proposal
         href: proposal.qmd
       - text: Presentation
         href: presentation.qmd
-      - text: About
-        href: about.qmd
 
 format:
   html:
