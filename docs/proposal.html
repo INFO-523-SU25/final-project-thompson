@@ -4062,6 +4062,7 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
   <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a>
   <ul class="collapse">
@@ -4138,8 +4139,7 @@ vertical-align: -.125em;
 <span id="cb1-19"><a href="#cb1-19"></a><span class="co">#visualization</span></span>
 <span id="cb1-20"><a href="#cb1-20"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-21"><a href="#cb1-21"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
@@ -4161,45 +4161,60 @@ vertical-align: -.125em;
 <span id="cb2-15"><a href="#cb2-15"></a></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="co">#confirms loaded data</span></span>
 <span id="cb2-17"><a href="#cb2-17"></a><span class="bu">print</span>(<span class="st">&quot;Evolution Data:&quot;</span>)</span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="bu">print</span>(evolution_df.head())</span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="bu">print</span>(evolution_df.info())</span>
 <span id="cb2-19"><a href="#cb2-19"></a></span>
 <span id="cb2-20"><a href="#cb2-20"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Family Data:&quot;</span>)</span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="bu">print</span>(family_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="bu">print</span>(family_df.info())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Evolution Data:
-   Tree        Phylum         A         G         O        T         V  \
-0     1    Tardigrada  0.000000  0.000000  0.000000  0.00000  0.000000   
-1     1   Onychophora  0.000000  0.000000  0.000000  0.00000  0.000000   
-2     1    Arthropoda  0.000228  0.000244  0.000376  0.00118  0.000935   
-3     1      Nematoda  0.000000  0.000000  0.000000  0.00000  0.000000   
-4     1  Nematomorpha  0.000000  0.000000  0.000000  0.00000  0.000000   
-
-          C         F         K         M         S  
-0  0.000000  0.000000  0.000000  0.000000  0.000000  
-1  0.000000  0.000000  0.000000  0.000000  0.000000  
-2  0.000995  0.001178  0.000043  0.000509  0.000108  
-3  0.000000  0.000000  0.000000  0.000000  0.000000  
-4  0.000000  0.000000  0.000000  0.000000  0.000000  
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 84 entries, 0 to 83
+Data columns (total 12 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Tree    84 non-null     int64  
+ 1   Phylum  84 non-null     object 
+ 2   A       84 non-null     float64
+ 3   G       84 non-null     float64
+ 4   O       84 non-null     float64
+ 5   T       84 non-null     float64
+ 6   V       84 non-null     float64
+ 7   C       84 non-null     float64
+ 8   F       84 non-null     float64
+ 9   K       84 non-null     float64
+ 10  M       84 non-null     float64
+ 11  S       84 non-null     float64
+dtypes: float64(10), int64(1), object(1)
+memory usage: 8.0+ KB
+None
 
 Family Data:
-                        Tree_Label     Phylum  SS  A  G  O  T  V  C  F  K  M  \
-0                        1Laevipil   Mollusca   0  0  0  0  0  0  0  0  0  0   
-1                        Acanthoch   Mollusca   0  0  0  0  0  0  0  0  0  0   
-2   AF135482Carcharodon_carcharias  Chordata    0  0  0  0  0  0  0  0  0  0   
-3               AF369055Polypterus  Chordata    0  0  0  0  0  0  0  0  0  0   
-4  AF369057U15613_Polyodon_spathul  Chordata    0  0  0  0  0  0  0  0  0  0   
-
-   S  
-0  0  
-1  0  
-2  0  
-3  0  
-4  0  </code></pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1087 entries, 0 to 1086
+Data columns (total 13 columns):
+ #   Column      Non-Null Count  Dtype 
+---  ------      --------------  ----- 
+ 0   Tree_Label  1087 non-null   object
+ 1   Phylum      1087 non-null   object
+ 2   SS          1087 non-null   int64 
+ 3   A           1087 non-null   int64 
+ 4   G           1087 non-null   int64 
+ 5   O           1087 non-null   int64 
+ 6   T           1087 non-null   int64 
+ 7   V           1087 non-null   int64 
+ 8   C           1087 non-null   int64 
+ 9   F           1087 non-null   int64 
+ 10  K           1087 non-null   int64 
+ 11  M           1087 non-null   int64 
+ 12  S           1087 non-null   int64 
+dtypes: int64(11), object(2)
+memory usage: 110.5+ KB
+None</code></pre>
 </div>
 </div>
 <p>Family-related metadata: 1 indicates trait presence, a whereas 0 indicates trait absence. SS: Combined (any sexually selected trait), A: Auditory, G: Gustatory, O: Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.</p>
 <p>Rates of trait evolution metadata: A: Auditory, G: Gustatory, O:Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.</p>
-<div id="11000cb1" class="cell" data-execution_count="3">
+<div id="87bb2383" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#description of each dataset</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(<span class="st">&quot;1. Evolution Rate Dataset&quot;</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="bu">print</span>(<span class="ss">f&quot;- File: animals_rateof_evolution.csv&quot;</span>)</span>
@@ -4221,9 +4236,32 @@ Family Data:
 - Description: Encodes presence (1) or absence (0) of various sexually selected traits (e.g., visual, auditory, male-male competition) at the family level.</code></pre>
 </div>
 </div>
-<p>I chose these two datasets, because the <em>family-related data</em> contains binary values (0 or 1) for various sexually selected traits, making it well-suited for training machine learning models across a diverse range of animal families. It could be great for hands-on experience with multi-class classification and feature selection. I may plan to use SHAP to help interpret the model’s predictions and feature contributions primarily for both data depending on the model performance. The <em>evolutionary rates data</em> includes continuous values (some greater than 0 and some zeros), which allows for a comparative analysis to determine which approach—binary presence or continuous evolutionary rates—offers greater predictive power.</p>
-<p>Source: <a href="https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321" class="uri">https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321</a></p>
+<p>I chose these two datasets because the family-related data contains binary values (0 or 1) for various sexually selected traits, which makes it good for training machine learning models across a wide range of animal families. This gives me hands-on experience with multi-class classification and feature selection, and I may use SHAP to interpret the model’s predictions and feature contributions depending on how the models perform. The evolutionary rates data, on the other hand, includes continuous values (some zeros and some greater than zero), which lets me compare whether binary presence/absence data or continuous evolutionary rates give better predictive power. The phylum-level data seems more redundant with the family-level data, but the evolutionary rates dataset provides a different kind of information. Even though it is model-derived, I can still use the rates as input features to predict superphyla classes, since they reflect repeated origins of sexually selected traits across lineages.</p>
+<p>Both datasets have a large number of distinct phyla. To reduce sparsity and improve interpretability, I will group these into higher-level clades called superphyla. This grouping stays below the kingdom level (since all taxa fall under Animalia) but still captures important evolutionary structure. Specifically, I will classify them into:</p>
+<ul>
+<li><p>Ecdysozoa</p></li>
+<li><p>Lophotrochozoa</p></li>
+<li><p>Deuterostomia</p></li>
+<li><p>Basal Metazoa &amp; Non-Bilaterians</p></li>
+<li><p>Basal Bilateria</p></li>
+</ul>
+<p>So overall, the family-level dataset gives raw binary trait data, while the evolutionary rates dataset gives continuous, model-derived estimates of trait origins. Using both together lets me compare which type of data—binary or continuous—works better for predicting evolutionary groupings.</p>
+<p>Dataset Source: <a href="https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321" class="uri">https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321</a></p>
 <p>(DataCite) Citation: Tuschhoff, E.; Wiens, John J. (2023). Data_Sheet_3_Evolution of sexually selected traits across animals.XLSX. Frontiers. Dataset. <a href="https://doi.org/10.3389/fevo.2023.1042747.s003" class="uri">https://doi.org/10.3389/fevo.2023.1042747.s003</a></p>
+<p>Other Sources:</p>
+<p>“Animal.” <em>Wikipedia</em>, 16 Aug. 2025. <em>Wikipedia</em>, <a href="https://en.wikipedia.org/w/index.php?title=Animal&amp;oldid=1306191709" class="uri">https://en.wikipedia.org/w/index.php?title=Animal&amp;oldid=1306191709</a>.</p>
+<p>Collins, Allen G., et al. “Phylogenetic Context and Basal Metazoan Model Systems.” <em>Integrative and Comparative Biology</em>, vol. 45, no. 4, Aug. 2005, pp. 585–94. <em>academic.oup.com</em>, <a href="https://doi.org/10.1093/icb/45.4.585" class="uri">https://doi.org/10.1093/icb/45.4.585</a>.</p>
+<p>“Deuterostome.” <em>Wikipedia</em>, 9 Jul. 2025. <em>Wikipedia</em>, <a href="https://en.wikipedia.org/w/index.php?title=Deuterostome&amp;oldid=1299664913" class="uri">https://en.wikipedia.org/w/index.php?title=Deuterostome&amp;oldid=1299664913</a>.</p>
+<p>“Ecdysozoa.” <em>Wikipedia</em>, 12 Aug. 2025. <em>Wikipedia</em>, <a href="https://en.wikipedia.org/w/index.php?title=Ecdysozoa&amp;oldid=1305526962" class="uri">https://en.wikipedia.org/w/index.php?title=Ecdysozoa&amp;oldid=1305526962</a>.</p>
+<p>“Lophotrochozoa.” <em>Wikipedia</em>, 26 Jul. 2025. <em>Wikipedia</em>, <a href="https://en.wikipedia.org/w/index.php?title=Lophotrochozoa&amp;oldid=1302526625" class="uri">https://en.wikipedia.org/w/index.php?title=Lophotrochozoa&amp;oldid=1302526625</a>.</p>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>I was motivated to try out the machine learning-based project with the animal classification because there are challenges to accurately classify each animal based on characteristics such as physiology, geographical distribution, and other traits, and even down to genomic sequence similarity (Tessler et al., 2022; van der Gulik et al., 2023). The idea of using machine learning for taxonomic classification already existed, but it still seems like a fairly new approach, so I wanted to evaluate how effective machine learning can be in this area (Alipour et al., 2024). If the project works out, it could be a stepping stone for further tweaks and improvements before applying it to more taxonomic classification problems using various numeric traits in a practical setting. This would help narrow down more relevant relative candidates when classifying while also saving time assuming the model accuracy is good.</p>
+<p>Sources:</p>
+<p>Alipour, Fatemeh, et al. “Leveraging Machine Learning for Taxonomic Classification of Emerging Astroviruses.” <em>Frontiers in Molecular Biosciences</em>, vol. 10, Jan. 2024. <em>Frontiers</em>, <a href="https://doi.org/10.3389/fmolb.2023.1305506" class="uri">https://doi.org/10.3389/fmolb.2023.1305506</a>.</p>
+<p>Tessler, Michael, et al. “Phylogenomics and the First Higher Taxonomy of Placozoa, an Ancient and Enigmatic Animal Phylum.” <em>Frontiers in Ecology and Evolution</em>, vol. 10, Dec. 2022. <em>Frontiers</em>, <a href="https://doi.org/10.3389/fevo.2022.1016357" class="uri">https://doi.org/10.3389/fevo.2022.1016357</a>.</p>
+<p>van der Gulik, Peter T. S., et al. “Renewing Linnaean Taxonomy: A Proposal to Restructure the Highest Levels of the Natural System.” <em>Biological Reviews</em>, vol. 98, no. 2, 2023, pp. 584–602. <em>Wiley Online Library</em>, <a href="https://doi.org/10.1111/brv.12920" class="uri">https://doi.org/10.1111/brv.12920</a>.</p>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
@@ -4259,8 +4297,9 @@ Family Data:
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</h3>
 <p>EDA will be performed separately for both datasets:</p>
 <ul>
-<li><p>Distribution plots for each trait.</p></li>
-<li><p>Correlation matrix or correlation heatmap</p></li>
+<li><p>Distribution plots for each trait in histogram</p></li>
+<li><p>Visualization of binary presence in sexually selected traits if possible</p></li>
+<li><p>Correlation matrix of sexually selected traits related to each other</p></li>
 <li><p>Summary statistics for continuous traits.</p></li>
 <li><p>Count plots or bar charts showing trait prevalence by taxonomic group (e.g., class or family).</p></li>
 </ul>
@@ -4858,155 +4897,194 @@ Family Data:
 <span id="cb6-46"><a href="#cb6-46"></a><span class="co">#visualization</span></span>
 <span id="cb6-47"><a href="#cb6-47"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-48"><a href="#cb6-48"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb6-49"><a href="#cb6-49"></a></span>
-<span id="cb6-50"><a href="#cb6-50"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb6-51"><a href="#cb6-51"></a></span>
-<span id="cb6-52"><a href="#cb6-52"></a><span class="in">```</span></span>
-<span id="cb6-53"><a href="#cb6-53"></a></span>
-<span id="cb6-54"><a href="#cb6-54"></a><span class="fu">## Dataset</span></span>
-<span id="cb6-55"><a href="#cb6-55"></a></span>
-<span id="cb6-58"><a href="#cb6-58"></a><span class="in">```{python}</span></span>
-<span id="cb6-59"><a href="#cb6-59"></a><span class="co">#| label: load-dataset</span></span>
-<span id="cb6-60"><a href="#cb6-60"></a><span class="co">#| message: false</span></span>
-<span id="cb6-61"><a href="#cb6-61"></a>folder_path <span class="op">=</span> <span class="st">&quot;/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data&quot;</span></span>
-<span id="cb6-62"><a href="#cb6-62"></a></span>
-<span id="cb6-63"><a href="#cb6-63"></a><span class="co">#list of dataset paths</span></span>
-<span id="cb6-64"><a href="#cb6-64"></a>folder_path <span class="op">=</span> <span class="st">&quot;/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data&quot;</span></span>
-<span id="cb6-65"><a href="#cb6-65"></a>evolution_path <span class="op">=</span> os.path.join(folder_path, <span class="st">&quot;animals_rateof_evolution.csv&quot;</span>)</span>
-<span id="cb6-66"><a href="#cb6-66"></a>family_path <span class="op">=</span> os.path.join(folder_path, <span class="st">&quot;family-related_data.csv&quot;</span>)</span>
-<span id="cb6-67"><a href="#cb6-67"></a></span>
-<span id="cb6-68"><a href="#cb6-68"></a><span class="co">#loadsdatasets</span></span>
-<span id="cb6-69"><a href="#cb6-69"></a>evolution_df <span class="op">=</span> pd.read_csv(evolution_path)</span>
-<span id="cb6-70"><a href="#cb6-70"></a>family_df <span class="op">=</span> pd.read_csv(family_path)</span>
-<span id="cb6-71"><a href="#cb6-71"></a></span>
-<span id="cb6-72"><a href="#cb6-72"></a><span class="co">#dataset shapes</span></span>
-<span id="cb6-73"><a href="#cb6-73"></a>evo_shape <span class="op">=</span> evolution_df.shape</span>
-<span id="cb6-74"><a href="#cb6-74"></a>fam_shape <span class="op">=</span> family_df.shape</span>
-<span id="cb6-75"><a href="#cb6-75"></a></span>
-<span id="cb6-76"><a href="#cb6-76"></a><span class="co">#confirms loaded data</span></span>
-<span id="cb6-77"><a href="#cb6-77"></a><span class="bu">print</span>(<span class="st">&quot;Evolution Data:&quot;</span>)</span>
-<span id="cb6-78"><a href="#cb6-78"></a><span class="bu">print</span>(evolution_df.head())</span>
-<span id="cb6-79"><a href="#cb6-79"></a></span>
-<span id="cb6-80"><a href="#cb6-80"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Family Data:&quot;</span>)</span>
-<span id="cb6-81"><a href="#cb6-81"></a><span class="bu">print</span>(family_df.head())</span>
-<span id="cb6-82"><a href="#cb6-82"></a></span>
-<span id="cb6-83"><a href="#cb6-83"></a><span class="in">```</span></span>
-<span id="cb6-84"><a href="#cb6-84"></a></span>
-<span id="cb6-85"><a href="#cb6-85"></a>Family-related metadata: 1 indicates trait presence, a whereas 0 indicates trait absence. SS: Combined (any sexually selected trait), A: Auditory, G: Gustatory, O: Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.</span>
-<span id="cb6-86"><a href="#cb6-86"></a></span>
-<span id="cb6-87"><a href="#cb6-87"></a>Rates of trait evolution metadata: A: Auditory, G: Gustatory, O:Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.</span>
-<span id="cb6-88"><a href="#cb6-88"></a></span>
-<span id="cb6-91"><a href="#cb6-91"></a><span class="in">```{python}</span></span>
-<span id="cb6-92"><a href="#cb6-92"></a><span class="co">#description of each dataset</span></span>
-<span id="cb6-93"><a href="#cb6-93"></a><span class="bu">print</span>(<span class="st">&quot;1. Evolution Rate Dataset&quot;</span>)</span>
-<span id="cb6-94"><a href="#cb6-94"></a><span class="bu">print</span>(<span class="ss">f&quot;- File: animals_rateof_evolution.csv&quot;</span>)</span>
-<span id="cb6-95"><a href="#cb6-95"></a><span class="bu">print</span>(<span class="ss">f&quot;- Dimensions: </span><span class="sc">{</span>evo_shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows × </span><span class="sc">{</span>evo_shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns&quot;</span>)</span>
-<span id="cb6-96"><a href="#cb6-96"></a><span class="bu">print</span>(<span class="st">&quot;- Description: Contains continuous values representing the evolutionary rate of various sexual traits across different animal taxa.&quot;</span>)</span>
-<span id="cb6-97"><a href="#cb6-97"></a></span>
-<span id="cb6-98"><a href="#cb6-98"></a><span class="bu">print</span>(<span class="st">&quot;2. Family-Level Trait Dataset&quot;</span>)</span>
-<span id="cb6-99"><a href="#cb6-99"></a><span class="bu">print</span>(<span class="ss">f&quot;- File: family-related_data.csv&quot;</span>)</span>
-<span id="cb6-100"><a href="#cb6-100"></a><span class="bu">print</span>(<span class="ss">f&quot;- Dimensions: </span><span class="sc">{</span>fam_shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows × </span><span class="sc">{</span>fam_shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns&quot;</span>)</span>
-<span id="cb6-101"><a href="#cb6-101"></a><span class="bu">print</span>(<span class="st">&quot;- Description: Encodes presence (1) or absence (0) of various sexually selected traits (e.g., visual, auditory, male-male competition) at the family level.&quot;</span>)</span>
-<span id="cb6-102"><a href="#cb6-102"></a><span class="in">```</span></span>
-<span id="cb6-103"><a href="#cb6-103"></a></span>
-<span id="cb6-104"><a href="#cb6-104"></a>I chose these two datasets, because the *family-related data* contains binary values (0 or 1) for various sexually selected traits, making it well-suited for training machine learning models across a diverse range of animal families. It could be great for hands-on experience with multi-class classification and feature selection. I may plan to use SHAP to help interpret the model&#39;s predictions and feature contributions primarily for both data depending on the model performance. The *evolutionary rates data* includes continuous values (some greater than 0 and some zeros), which allows for a comparative analysis to determine which approach—binary presence or continuous evolutionary rates—offers greater predictive power.</span>
-<span id="cb6-105"><a href="#cb6-105"></a></span>
-<span id="cb6-106"><a href="#cb6-106"></a>Source: <span class="ot">&lt;https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321&gt;</span></span>
-<span id="cb6-107"><a href="#cb6-107"></a></span>
-<span id="cb6-108"><a href="#cb6-108"></a>(DataCite) Citation: Tuschhoff, E.; Wiens, John J. (2023). Data_Sheet_3_Evolution of sexually selected traits across animals.XLSX. Frontiers. Dataset. <span class="ot">&lt;https://doi.org/10.3389/fevo.2023.1042747.s003&gt;</span></span>
-<span id="cb6-109"><a href="#cb6-109"></a></span>
-<span id="cb6-110"><a href="#cb6-110"></a><span class="fu">## Questions</span></span>
-<span id="cb6-111"><a href="#cb6-111"></a></span>
-<span id="cb6-112"><a href="#cb6-112"></a><span class="ss">-   </span>How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?</span>
-<span id="cb6-113"><a href="#cb6-113"></a><span class="ss">-   </span>Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?</span>
+<span id="cb6-49"><a href="#cb6-49"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb6-50"><a href="#cb6-50"></a></span>
+<span id="cb6-51"><a href="#cb6-51"></a><span class="in">```</span></span>
+<span id="cb6-52"><a href="#cb6-52"></a></span>
+<span id="cb6-53"><a href="#cb6-53"></a><span class="fu">## Dataset</span></span>
+<span id="cb6-54"><a href="#cb6-54"></a></span>
+<span id="cb6-57"><a href="#cb6-57"></a><span class="in">```{python}</span></span>
+<span id="cb6-58"><a href="#cb6-58"></a><span class="co">#| label: load-dataset</span></span>
+<span id="cb6-59"><a href="#cb6-59"></a><span class="co">#| message: false</span></span>
+<span id="cb6-60"><a href="#cb6-60"></a>folder_path <span class="op">=</span> <span class="st">&quot;/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data&quot;</span></span>
+<span id="cb6-61"><a href="#cb6-61"></a></span>
+<span id="cb6-62"><a href="#cb6-62"></a><span class="co">#list of dataset paths</span></span>
+<span id="cb6-63"><a href="#cb6-63"></a>folder_path <span class="op">=</span> <span class="st">&quot;/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data&quot;</span></span>
+<span id="cb6-64"><a href="#cb6-64"></a>evolution_path <span class="op">=</span> os.path.join(folder_path, <span class="st">&quot;animals_rateof_evolution.csv&quot;</span>)</span>
+<span id="cb6-65"><a href="#cb6-65"></a>family_path <span class="op">=</span> os.path.join(folder_path, <span class="st">&quot;family-related_data.csv&quot;</span>)</span>
+<span id="cb6-66"><a href="#cb6-66"></a></span>
+<span id="cb6-67"><a href="#cb6-67"></a><span class="co">#loadsdatasets</span></span>
+<span id="cb6-68"><a href="#cb6-68"></a>evolution_df <span class="op">=</span> pd.read_csv(evolution_path)</span>
+<span id="cb6-69"><a href="#cb6-69"></a>family_df <span class="op">=</span> pd.read_csv(family_path)</span>
+<span id="cb6-70"><a href="#cb6-70"></a></span>
+<span id="cb6-71"><a href="#cb6-71"></a><span class="co">#dataset shapes</span></span>
+<span id="cb6-72"><a href="#cb6-72"></a>evo_shape <span class="op">=</span> evolution_df.shape</span>
+<span id="cb6-73"><a href="#cb6-73"></a>fam_shape <span class="op">=</span> family_df.shape</span>
+<span id="cb6-74"><a href="#cb6-74"></a></span>
+<span id="cb6-75"><a href="#cb6-75"></a><span class="co">#confirms loaded data</span></span>
+<span id="cb6-76"><a href="#cb6-76"></a><span class="bu">print</span>(<span class="st">&quot;Evolution Data:&quot;</span>)</span>
+<span id="cb6-77"><a href="#cb6-77"></a><span class="bu">print</span>(evolution_df.info())</span>
+<span id="cb6-78"><a href="#cb6-78"></a></span>
+<span id="cb6-79"><a href="#cb6-79"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Family Data:&quot;</span>)</span>
+<span id="cb6-80"><a href="#cb6-80"></a><span class="bu">print</span>(family_df.info())</span>
+<span id="cb6-81"><a href="#cb6-81"></a></span>
+<span id="cb6-82"><a href="#cb6-82"></a><span class="in">```</span></span>
+<span id="cb6-83"><a href="#cb6-83"></a></span>
+<span id="cb6-84"><a href="#cb6-84"></a>Family-related metadata: 1 indicates trait presence, a whereas 0 indicates trait absence. SS: Combined (any sexually selected trait), A: Auditory, G: Gustatory, O: Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.</span>
+<span id="cb6-85"><a href="#cb6-85"></a></span>
+<span id="cb6-86"><a href="#cb6-86"></a>Rates of trait evolution metadata: A: Auditory, G: Gustatory, O:Olfactory, T:Tactile, V: Visual, C: Male-male competition, F: Female choice, K: Female-female competition, M: Male choice, S: Intersexual conflict.</span>
+<span id="cb6-87"><a href="#cb6-87"></a></span>
+<span id="cb6-90"><a href="#cb6-90"></a><span class="in">```{python}</span></span>
+<span id="cb6-91"><a href="#cb6-91"></a><span class="co">#description of each dataset</span></span>
+<span id="cb6-92"><a href="#cb6-92"></a><span class="bu">print</span>(<span class="st">&quot;1. Evolution Rate Dataset&quot;</span>)</span>
+<span id="cb6-93"><a href="#cb6-93"></a><span class="bu">print</span>(<span class="ss">f&quot;- File: animals_rateof_evolution.csv&quot;</span>)</span>
+<span id="cb6-94"><a href="#cb6-94"></a><span class="bu">print</span>(<span class="ss">f&quot;- Dimensions: </span><span class="sc">{</span>evo_shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows × </span><span class="sc">{</span>evo_shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns&quot;</span>)</span>
+<span id="cb6-95"><a href="#cb6-95"></a><span class="bu">print</span>(<span class="st">&quot;- Description: Contains continuous values representing the evolutionary rate of various sexual traits across different animal taxa.&quot;</span>)</span>
+<span id="cb6-96"><a href="#cb6-96"></a></span>
+<span id="cb6-97"><a href="#cb6-97"></a><span class="bu">print</span>(<span class="st">&quot;2. Family-Level Trait Dataset&quot;</span>)</span>
+<span id="cb6-98"><a href="#cb6-98"></a><span class="bu">print</span>(<span class="ss">f&quot;- File: family-related_data.csv&quot;</span>)</span>
+<span id="cb6-99"><a href="#cb6-99"></a><span class="bu">print</span>(<span class="ss">f&quot;- Dimensions: </span><span class="sc">{</span>fam_shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows × </span><span class="sc">{</span>fam_shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns&quot;</span>)</span>
+<span id="cb6-100"><a href="#cb6-100"></a><span class="bu">print</span>(<span class="st">&quot;- Description: Encodes presence (1) or absence (0) of various sexually selected traits (e.g., visual, auditory, male-male competition) at the family level.&quot;</span>)</span>
+<span id="cb6-101"><a href="#cb6-101"></a><span class="in">```</span></span>
+<span id="cb6-102"><a href="#cb6-102"></a></span>
+<span id="cb6-103"><a href="#cb6-103"></a>I chose these two datasets because the family-related data contains binary values (0 or 1) for various sexually selected traits, which makes it good for training machine learning models across a wide range of animal families. This gives me hands-on experience with multi-class classification and feature selection, and I may use SHAP to interpret the model’s predictions and feature contributions depending on how the models perform. The evolutionary rates data, on the other hand, includes continuous values (some zeros and some greater than zero), which lets me compare whether binary presence/absence data or continuous evolutionary rates give better predictive power. The phylum-level data seems more redundant with the family-level data, but the evolutionary rates dataset provides a different kind of information. Even though it is model-derived, I can still use the rates as input features to predict superphyla classes, since they reflect repeated origins of sexually selected traits across lineages.</span>
+<span id="cb6-104"><a href="#cb6-104"></a></span>
+<span id="cb6-105"><a href="#cb6-105"></a>Both datasets have a large number of distinct phyla. To reduce sparsity and improve interpretability, I will group these into higher-level clades called superphyla. This grouping stays below the kingdom level (since all taxa fall under Animalia) but still captures important evolutionary structure. Specifically, I will classify them into:</span>
+<span id="cb6-106"><a href="#cb6-106"></a></span>
+<span id="cb6-107"><a href="#cb6-107"></a><span class="ss">-   </span>Ecdysozoa</span>
+<span id="cb6-108"><a href="#cb6-108"></a></span>
+<span id="cb6-109"><a href="#cb6-109"></a><span class="ss">-   </span>Lophotrochozoa</span>
+<span id="cb6-110"><a href="#cb6-110"></a></span>
+<span id="cb6-111"><a href="#cb6-111"></a><span class="ss">-   </span>Deuterostomia</span>
+<span id="cb6-112"><a href="#cb6-112"></a></span>
+<span id="cb6-113"><a href="#cb6-113"></a><span class="ss">-   </span>Basal Metazoa &amp; Non-Bilaterians</span>
 <span id="cb6-114"><a href="#cb6-114"></a></span>
-<span id="cb6-115"><a href="#cb6-115"></a>------------------------------------------------------------------------</span>
+<span id="cb6-115"><a href="#cb6-115"></a><span class="ss">-   </span>Basal Bilateria</span>
 <span id="cb6-116"><a href="#cb6-116"></a></span>
-<span id="cb6-117"><a href="#cb6-117"></a><span class="fu">## Analysis plan</span></span>
+<span id="cb6-117"><a href="#cb6-117"></a>So overall, the family-level dataset gives raw binary trait data, while the evolutionary rates dataset gives continuous, model-derived estimates of trait origins. Using both together lets me compare which type of data—binary or continuous—works better for predicting evolutionary groupings.</span>
 <span id="cb6-118"><a href="#cb6-118"></a></span>
-<span id="cb6-119"><a href="#cb6-119"></a><span class="fu">### Overview</span></span>
+<span id="cb6-119"><a href="#cb6-119"></a>Dataset Source: <span class="ot">&lt;https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321&gt;</span></span>
 <span id="cb6-120"><a href="#cb6-120"></a></span>
-<span id="cb6-121"><a href="#cb6-121"></a>The primary objective is to assess and compare the predictive power and interpretability of both data.</span>
+<span id="cb6-121"><a href="#cb6-121"></a>(DataCite) Citation: Tuschhoff, E.; Wiens, John J. (2023). Data_Sheet_3_Evolution of sexually selected traits across animals.XLSX. Frontiers. Dataset. <span class="ot">&lt;https://doi.org/10.3389/fevo.2023.1042747.s003&gt;</span></span>
 <span id="cb6-122"><a href="#cb6-122"></a></span>
-<span id="cb6-123"><a href="#cb6-123"></a><span class="fu">### Dataset Descriptions</span></span>
+<span id="cb6-123"><a href="#cb6-123"></a>Other Sources:</span>
 <span id="cb6-124"><a href="#cb6-124"></a></span>
-<span id="cb6-125"><a href="#cb6-125"></a>**1. Family-Level Trait Data (`family_df`)**</span>
+<span id="cb6-125"><a href="#cb6-125"></a>“Animal.” *Wikipedia*, 16 Aug. 2025. *Wikipedia*, <span class="ot">&lt;https://en.wikipedia.org/w/index.php?title=Animal&amp;oldid=1306191709&gt;</span>.</span>
 <span id="cb6-126"><a href="#cb6-126"></a></span>
-<span id="cb6-127"><a href="#cb6-127"></a><span class="ss">-   </span>Format: Binary indicators (<span class="in">`0`</span> or <span class="in">`1`</span>) for the presence or absence of sexually selected traits.</span>
+<span id="cb6-127"><a href="#cb6-127"></a>Collins, Allen G., et al. “Phylogenetic Context and Basal Metazoan Model Systems.” *Integrative and Comparative Biology*, vol. 45, no. 4, Aug. 2005, pp. 585–94. *academic.oup.com*, <span class="ot">&lt;https://doi.org/10.1093/icb/45.4.585&gt;</span>.</span>
 <span id="cb6-128"><a href="#cb6-128"></a></span>
-<span id="cb6-129"><a href="#cb6-129"></a><span class="ss">-   </span>Traits include: <span class="in">`SS`</span>, <span class="in">`A`</span>, <span class="in">`G`</span>, <span class="in">`O`</span>, <span class="in">`T`</span>, <span class="in">`V`</span>, <span class="in">`C`</span>, <span class="in">`F`</span>, <span class="in">`K`</span>, <span class="in">`M`</span>, <span class="in">`S`</span></span>
+<span id="cb6-129"><a href="#cb6-129"></a>“Deuterostome.” *Wikipedia*, 9 Jul. 2025. *Wikipedia*, <span class="ot">&lt;https://en.wikipedia.org/w/index.php?title=Deuterostome&amp;oldid=1299664913&gt;</span>.</span>
 <span id="cb6-130"><a href="#cb6-130"></a></span>
-<span id="cb6-131"><a href="#cb6-131"></a><span class="ss">-   </span>Each row represents a taxonomic family.</span>
+<span id="cb6-131"><a href="#cb6-131"></a>“Ecdysozoa.” *Wikipedia*, 12 Aug. 2025. *Wikipedia*, <span class="ot">&lt;https://en.wikipedia.org/w/index.php?title=Ecdysozoa&amp;oldid=1305526962&gt;</span>.</span>
 <span id="cb6-132"><a href="#cb6-132"></a></span>
-<span id="cb6-133"><a href="#cb6-133"></a><span class="ss">-   </span>The target variable will likely be a categorical label such as <span class="in">`Class`</span> or a user-defined taxon.</span>
+<span id="cb6-133"><a href="#cb6-133"></a>“Lophotrochozoa.” *Wikipedia*, 26 Jul. 2025. *Wikipedia*, <span class="ot">&lt;https://en.wikipedia.org/w/index.php?title=Lophotrochozoa&amp;oldid=1302526625&gt;</span>.</span>
 <span id="cb6-134"><a href="#cb6-134"></a></span>
-<span id="cb6-135"><a href="#cb6-135"></a>**2. Evolutionary Rates Data (`evolution_df`)**</span>
+<span id="cb6-135"><a href="#cb6-135"></a><span class="fu">## Motivation</span></span>
 <span id="cb6-136"><a href="#cb6-136"></a></span>
-<span id="cb6-137"><a href="#cb6-137"></a><span class="ss">-   </span>Format: Continuous numerical values representing the origin rates of the same traits listed above.</span>
+<span id="cb6-137"><a href="#cb6-137"></a>I was motivated to try out the machine learning-based project with the animal classification because there are challenges to accurately classify each animal based on characteristics such as physiology, geographical distribution, and other traits, and even down to genomic sequence similarity (Tessler et al., 2022; van der Gulik et al., 2023). The idea of using machine learning for taxonomic classification already existed, but it still seems like a fairly new approach, so I wanted to evaluate how effective machine learning can be in this area (Alipour et al., 2024). If the project works out, it could be a stepping stone for further tweaks and improvements before applying it to more taxonomic classification problems using various numeric traits in a practical setting. This would help narrow down more relevant relative candidates when classifying while also saving time assuming the model accuracy is good.</span>
 <span id="cb6-138"><a href="#cb6-138"></a></span>
-<span id="cb6-139"><a href="#cb6-139"></a><span class="ss">-   </span>Each row represents a taxonomic group.</span>
+<span id="cb6-139"><a href="#cb6-139"></a>Sources:</span>
 <span id="cb6-140"><a href="#cb6-140"></a></span>
-<span id="cb6-141"><a href="#cb6-141"></a><span class="ss">-   </span>Target variable will match the one used in the binary dataset for comparison.</span>
+<span id="cb6-141"><a href="#cb6-141"></a>Alipour, Fatemeh, et al. “Leveraging Machine Learning for Taxonomic Classification of Emerging Astroviruses.” *Frontiers in Molecular Biosciences*, vol. 10, Jan. 2024. *Frontiers*, <span class="ot">&lt;https://doi.org/10.3389/fmolb.2023.1305506&gt;</span>.</span>
 <span id="cb6-142"><a href="#cb6-142"></a></span>
-<span id="cb6-143"><a href="#cb6-143"></a><span class="fu">### Exploratory Data Analysis (EDA)</span></span>
+<span id="cb6-143"><a href="#cb6-143"></a>Tessler, Michael, et al. “Phylogenomics and the First Higher Taxonomy of Placozoa, an Ancient and Enigmatic Animal Phylum.” *Frontiers in Ecology and Evolution*, vol. 10, Dec. 2022. *Frontiers*, <span class="ot">&lt;https://doi.org/10.3389/fevo.2022.1016357&gt;</span>.</span>
 <span id="cb6-144"><a href="#cb6-144"></a></span>
-<span id="cb6-145"><a href="#cb6-145"></a>EDA will be performed separately for both datasets:</span>
+<span id="cb6-145"><a href="#cb6-145"></a>van der Gulik, Peter T. S., et al. “Renewing Linnaean Taxonomy: A Proposal to Restructure the Highest Levels of the Natural System.” *Biological Reviews*, vol. 98, no. 2, 2023, pp. 584–602. *Wiley Online Library*, <span class="ot">&lt;https://doi.org/10.1111/brv.12920&gt;</span>.</span>
 <span id="cb6-146"><a href="#cb6-146"></a></span>
-<span id="cb6-147"><a href="#cb6-147"></a><span class="ss">-   </span>Distribution plots for each trait.</span>
+<span id="cb6-147"><a href="#cb6-147"></a><span class="fu">## Questions</span></span>
 <span id="cb6-148"><a href="#cb6-148"></a></span>
-<span id="cb6-149"><a href="#cb6-149"></a><span class="ss">-   </span>Correlation matrix or correlation heatmap</span>
-<span id="cb6-150"><a href="#cb6-150"></a></span>
-<span id="cb6-151"><a href="#cb6-151"></a><span class="ss">-   </span>Summary statistics for continuous traits.</span>
-<span id="cb6-152"><a href="#cb6-152"></a></span>
-<span id="cb6-153"><a href="#cb6-153"></a><span class="ss">-   </span>Count plots or bar charts showing trait prevalence by taxonomic group (e.g., class or family).</span>
-<span id="cb6-154"><a href="#cb6-154"></a></span>
-<span id="cb6-155"><a href="#cb6-155"></a><span class="fu">### Modeling Approach</span></span>
-<span id="cb6-156"><a href="#cb6-156"></a></span>
-<span id="cb6-157"><a href="#cb6-157"></a>For both datasets:</span>
-<span id="cb6-158"><a href="#cb6-158"></a></span>
-<span id="cb6-159"><a href="#cb6-159"></a>1<span class="sc">\.</span> Data Preparation</span>
-<span id="cb6-160"><a href="#cb6-160"></a></span>
-<span id="cb6-161"><a href="#cb6-161"></a><span class="ss">-   </span>I will double check for any null values.</span>
-<span id="cb6-162"><a href="#cb6-162"></a></span>
-<span id="cb6-163"><a href="#cb6-163"></a><span class="ss">-   </span>I will encode target variable (animals taxa) using <span class="in">`LabelEncoder`</span>. For the evolutionary rates, I will convert any values <span class="sc">\&gt;</span> 0 to 1 and hot-encode these numerical columns (sexually selected traits) for the presence of sexually selected traits.</span>
-<span id="cb6-164"><a href="#cb6-164"></a></span>
-<span id="cb6-165"><a href="#cb6-165"></a><span class="ss">-   </span>For <span class="in">`evolution_df`</span>, I will standardize these sexually selected traits feature using <span class="in">`StandardScaler`</span>.</span>
-<span id="cb6-166"><a href="#cb6-166"></a></span>
-<span id="cb6-167"><a href="#cb6-167"></a>2<span class="sc">\.</span> Models to Use</span>
-<span id="cb6-168"><a href="#cb6-168"></a></span>
-<span id="cb6-169"><a href="#cb6-169"></a><span class="ss">-   </span><span class="in">`DecisionTreeClassifier`</span></span>
-<span id="cb6-170"><a href="#cb6-170"></a></span>
-<span id="cb6-171"><a href="#cb6-171"></a><span class="ss">-   </span><span class="in">`RandomForestClassifier`</span></span>
-<span id="cb6-172"><a href="#cb6-172"></a></span>
-<span id="cb6-173"><a href="#cb6-173"></a><span class="ss">-   </span><span class="in">`LogisticRegression`</span></span>
-<span id="cb6-174"><a href="#cb6-174"></a></span>
-<span id="cb6-175"><a href="#cb6-175"></a>3<span class="sc">\.</span> Evaluation Metrics</span>
-<span id="cb6-176"><a href="#cb6-176"></a></span>
-<span id="cb6-177"><a href="#cb6-177"></a><span class="ss">-   </span>Accuracy score</span>
-<span id="cb6-178"><a href="#cb6-178"></a></span>
-<span id="cb6-179"><a href="#cb6-179"></a><span class="ss">-   </span>Confusion matrix</span>
-<span id="cb6-180"><a href="#cb6-180"></a></span>
-<span id="cb6-181"><a href="#cb6-181"></a><span class="ss">-   </span>Classification report</span>
-<span id="cb6-182"><a href="#cb6-182"></a></span>
-<span id="cb6-183"><a href="#cb6-183"></a><span class="ss">-   </span>Cross-validation score (<span class="in">`cross_val_score`</span>)</span>
-<span id="cb6-184"><a href="#cb6-184"></a></span>
-<span id="cb6-185"><a href="#cb6-185"></a><span class="ss">-   </span>ROC-AUC score</span>
-<span id="cb6-186"><a href="#cb6-186"></a></span>
-<span id="cb6-187"><a href="#cb6-187"></a>4<span class="sc">\.</span> Model Interpretation</span>
-<span id="cb6-188"><a href="#cb6-188"></a></span>
-<span id="cb6-189"><a href="#cb6-189"></a><span class="ss">-   </span>I will use SHAP to interpret trained models.</span>
-<span id="cb6-190"><a href="#cb6-190"></a></span>
-<span id="cb6-191"><a href="#cb6-191"></a><span class="ss">-   </span>I will generate SHAP summary plots and bar plots to highlight influential traits.</span>
-<span id="cb6-192"><a href="#cb6-192"></a></span>
-<span id="cb6-193"><a href="#cb6-193"></a><span class="ss">-   </span>I will compare interpretability between models trained on binary and continuous data for the evolutionary rates.</span>
-<span id="cb6-194"><a href="#cb6-194"></a></span>
-<span id="cb6-195"><a href="#cb6-195"></a><span class="fu">### Comparison and Interpretation</span></span>
-<span id="cb6-196"><a href="#cb6-196"></a></span>
-<span id="cb6-197"><a href="#cb6-197"></a><span class="ss">-   </span>I will interpret the classification performance across both data and answer both questions. Then, I will draw conclusions about which dataset format (binary or continuous) provides stronger predictive insights for question #2.</span>
-<span id="cb6-198"><a href="#cb6-198"></a></span>
-<span id="cb6-199"><a href="#cb6-199"></a><span class="ss">-   </span>I will analyze SHAP outputs to identify which traits contribute most to predictions.</span>
-<span id="cb6-200"><a href="#cb6-200"></a></span>
-<span id="cb6-201"><a href="#cb6-201"></a><span class="ss">-   </span>I may also interpret which family has sexually selected traits and explain the results (if I have more time during the presentation).</span>
+<span id="cb6-149"><a href="#cb6-149"></a><span class="ss">-   </span>How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?</span>
+<span id="cb6-150"><a href="#cb6-150"></a><span class="ss">-   </span>Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?</span>
+<span id="cb6-151"><a href="#cb6-151"></a></span>
+<span id="cb6-152"><a href="#cb6-152"></a>------------------------------------------------------------------------</span>
+<span id="cb6-153"><a href="#cb6-153"></a></span>
+<span id="cb6-154"><a href="#cb6-154"></a><span class="fu">## Analysis plan</span></span>
+<span id="cb6-155"><a href="#cb6-155"></a></span>
+<span id="cb6-156"><a href="#cb6-156"></a><span class="fu">### Overview</span></span>
+<span id="cb6-157"><a href="#cb6-157"></a></span>
+<span id="cb6-158"><a href="#cb6-158"></a>The primary objective is to assess and compare the predictive power and interpretability of both data.</span>
+<span id="cb6-159"><a href="#cb6-159"></a></span>
+<span id="cb6-160"><a href="#cb6-160"></a><span class="fu">### Dataset Descriptions</span></span>
+<span id="cb6-161"><a href="#cb6-161"></a></span>
+<span id="cb6-162"><a href="#cb6-162"></a>**1. Family-Level Trait Data (`family_df`)**</span>
+<span id="cb6-163"><a href="#cb6-163"></a></span>
+<span id="cb6-164"><a href="#cb6-164"></a><span class="ss">-   </span>Format: Binary indicators (<span class="in">`0`</span> or <span class="in">`1`</span>) for the presence or absence of sexually selected traits.</span>
+<span id="cb6-165"><a href="#cb6-165"></a></span>
+<span id="cb6-166"><a href="#cb6-166"></a><span class="ss">-   </span>Traits include: <span class="in">`SS`</span>, <span class="in">`A`</span>, <span class="in">`G`</span>, <span class="in">`O`</span>, <span class="in">`T`</span>, <span class="in">`V`</span>, <span class="in">`C`</span>, <span class="in">`F`</span>, <span class="in">`K`</span>, <span class="in">`M`</span>, <span class="in">`S`</span></span>
+<span id="cb6-167"><a href="#cb6-167"></a></span>
+<span id="cb6-168"><a href="#cb6-168"></a><span class="ss">-   </span>Each row represents a taxonomic family.</span>
+<span id="cb6-169"><a href="#cb6-169"></a></span>
+<span id="cb6-170"><a href="#cb6-170"></a><span class="ss">-   </span>The target variable will likely be a categorical label such as <span class="in">`Class`</span> or a user-defined taxon.</span>
+<span id="cb6-171"><a href="#cb6-171"></a></span>
+<span id="cb6-172"><a href="#cb6-172"></a>**2. Evolutionary Rates Data (`evolution_df`)**</span>
+<span id="cb6-173"><a href="#cb6-173"></a></span>
+<span id="cb6-174"><a href="#cb6-174"></a><span class="ss">-   </span>Format: Continuous numerical values representing the origin rates of the same traits listed above.</span>
+<span id="cb6-175"><a href="#cb6-175"></a></span>
+<span id="cb6-176"><a href="#cb6-176"></a><span class="ss">-   </span>Each row represents a taxonomic group.</span>
+<span id="cb6-177"><a href="#cb6-177"></a></span>
+<span id="cb6-178"><a href="#cb6-178"></a><span class="ss">-   </span>Target variable will match the one used in the binary dataset for comparison.</span>
+<span id="cb6-179"><a href="#cb6-179"></a></span>
+<span id="cb6-180"><a href="#cb6-180"></a><span class="fu">### Exploratory Data Analysis (EDA)</span></span>
+<span id="cb6-181"><a href="#cb6-181"></a></span>
+<span id="cb6-182"><a href="#cb6-182"></a>EDA will be performed separately for both datasets:</span>
+<span id="cb6-183"><a href="#cb6-183"></a></span>
+<span id="cb6-184"><a href="#cb6-184"></a><span class="ss">-   </span>Distribution plots for each trait in histogram</span>
+<span id="cb6-185"><a href="#cb6-185"></a></span>
+<span id="cb6-186"><a href="#cb6-186"></a><span class="ss">-   </span>Visualization of binary presence in sexually selected traits if possible</span>
+<span id="cb6-187"><a href="#cb6-187"></a></span>
+<span id="cb6-188"><a href="#cb6-188"></a><span class="ss">-   </span>Correlation matrix of sexually selected traits related to each other</span>
+<span id="cb6-189"><a href="#cb6-189"></a></span>
+<span id="cb6-190"><a href="#cb6-190"></a><span class="ss">-   </span>Summary statistics for continuous traits.</span>
+<span id="cb6-191"><a href="#cb6-191"></a></span>
+<span id="cb6-192"><a href="#cb6-192"></a><span class="ss">-   </span>Count plots or bar charts showing trait prevalence by taxonomic group (e.g., class or family).</span>
+<span id="cb6-193"><a href="#cb6-193"></a></span>
+<span id="cb6-194"><a href="#cb6-194"></a><span class="fu">### Modeling Approach</span></span>
+<span id="cb6-195"><a href="#cb6-195"></a></span>
+<span id="cb6-196"><a href="#cb6-196"></a>For both datasets:</span>
+<span id="cb6-197"><a href="#cb6-197"></a></span>
+<span id="cb6-198"><a href="#cb6-198"></a>1<span class="sc">\.</span> Data Preparation</span>
+<span id="cb6-199"><a href="#cb6-199"></a></span>
+<span id="cb6-200"><a href="#cb6-200"></a><span class="ss">-   </span>I will double check for any null values.</span>
+<span id="cb6-201"><a href="#cb6-201"></a></span>
+<span id="cb6-202"><a href="#cb6-202"></a><span class="ss">-   </span>I will encode target variable (animals taxa) using <span class="in">`LabelEncoder`</span>. For the evolutionary rates, I will convert any values <span class="sc">\&gt;</span> 0 to 1 and hot-encode these numerical columns (sexually selected traits) for the presence of sexually selected traits.</span>
+<span id="cb6-203"><a href="#cb6-203"></a></span>
+<span id="cb6-204"><a href="#cb6-204"></a><span class="ss">-   </span>For <span class="in">`evolution_df`</span>, I will standardize these sexually selected traits feature using <span class="in">`StandardScaler`</span>.</span>
+<span id="cb6-205"><a href="#cb6-205"></a></span>
+<span id="cb6-206"><a href="#cb6-206"></a>2<span class="sc">\.</span> Models to Use</span>
+<span id="cb6-207"><a href="#cb6-207"></a></span>
+<span id="cb6-208"><a href="#cb6-208"></a><span class="ss">-   </span><span class="in">`DecisionTreeClassifier`</span></span>
+<span id="cb6-209"><a href="#cb6-209"></a></span>
+<span id="cb6-210"><a href="#cb6-210"></a><span class="ss">-   </span><span class="in">`RandomForestClassifier`</span></span>
+<span id="cb6-211"><a href="#cb6-211"></a></span>
+<span id="cb6-212"><a href="#cb6-212"></a><span class="ss">-   </span><span class="in">`LogisticRegression`</span></span>
+<span id="cb6-213"><a href="#cb6-213"></a></span>
+<span id="cb6-214"><a href="#cb6-214"></a>3<span class="sc">\.</span> Evaluation Metrics</span>
+<span id="cb6-215"><a href="#cb6-215"></a></span>
+<span id="cb6-216"><a href="#cb6-216"></a><span class="ss">-   </span>Accuracy score</span>
+<span id="cb6-217"><a href="#cb6-217"></a></span>
+<span id="cb6-218"><a href="#cb6-218"></a><span class="ss">-   </span>Confusion matrix</span>
+<span id="cb6-219"><a href="#cb6-219"></a></span>
+<span id="cb6-220"><a href="#cb6-220"></a><span class="ss">-   </span>Classification report</span>
+<span id="cb6-221"><a href="#cb6-221"></a></span>
+<span id="cb6-222"><a href="#cb6-222"></a><span class="ss">-   </span>Cross-validation score (<span class="in">`cross_val_score`</span>)</span>
+<span id="cb6-223"><a href="#cb6-223"></a></span>
+<span id="cb6-224"><a href="#cb6-224"></a><span class="ss">-   </span>ROC-AUC score</span>
+<span id="cb6-225"><a href="#cb6-225"></a></span>
+<span id="cb6-226"><a href="#cb6-226"></a>4<span class="sc">\.</span> Model Interpretation</span>
+<span id="cb6-227"><a href="#cb6-227"></a></span>
+<span id="cb6-228"><a href="#cb6-228"></a><span class="ss">-   </span>I will use SHAP to interpret trained models.</span>
+<span id="cb6-229"><a href="#cb6-229"></a></span>
+<span id="cb6-230"><a href="#cb6-230"></a><span class="ss">-   </span>I will generate SHAP summary plots and bar plots to highlight influential traits.</span>
+<span id="cb6-231"><a href="#cb6-231"></a></span>
+<span id="cb6-232"><a href="#cb6-232"></a><span class="ss">-   </span>I will compare interpretability between models trained on binary and continuous data for the evolutionary rates.</span>
+<span id="cb6-233"><a href="#cb6-233"></a></span>
+<span id="cb6-234"><a href="#cb6-234"></a><span class="fu">### Comparison and Interpretation</span></span>
+<span id="cb6-235"><a href="#cb6-235"></a></span>
+<span id="cb6-236"><a href="#cb6-236"></a><span class="ss">-   </span>I will interpret the classification performance across both data and answer both questions. Then, I will draw conclusions about which dataset format (binary or continuous) provides stronger predictive insights for question #2.</span>
+<span id="cb6-237"><a href="#cb6-237"></a></span>
+<span id="cb6-238"><a href="#cb6-238"></a><span class="ss">-   </span>I will analyze SHAP outputs to identify which traits contribute most to predictions.</span>
+<span id="cb6-239"><a href="#cb6-239"></a></span>
+<span id="cb6-240"><a href="#cb6-240"></a><span class="ss">-   </span>I may also interpret which family has sexually selected traits and explain the results (if I have more time during the presentation).</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
