@@ -15,7 +15,9 @@ format:
 editor: visual
 code-annotations: hover
 execute:
+  echo: false
   warning: false
+  output: true
 jupyter: python3
 ---
 
