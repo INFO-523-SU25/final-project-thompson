@@ -35,40 +35,30 @@ execute:
 
 ## Motivation & Objective
 
--   ::::: columns
-    ::: {.column width="50%"}
-    -   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)\
-    -   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)\
-    :::
+::::: columns
+::: {.column width="50%"}
+-   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)
+-   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)
+:::
 
-    ::: {.column width="50%"}
-    -   Stepping stone: refine models, improve performance\
-    -   Potential: narrow candidate taxa, save time, improve relevance\
-    :::
-    :::::
+::: {.column width="50%"}
+-   Stepping stone: refine models, improve performance
+-   Potential: narrow candidate taxa, save time, improve relevance
+:::
+:::::
 
 **Research Questions**
 
 1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?
 2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
 
-\<audio controls style="width:100%; margin-top:10px;"\>
+<audio controls style="width:100%; margin-top:10px;">
 
 <!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
 
 Your browser does not support the audio element.
 
-\</audio\>
-
-\<details class="transcript" style="margin-top:.5rem;"\>
-
-\<summary\>\<strong\>Transcript\</strong\>\</summary\>
-
-<!-- {{< include slides/transcripts/slideXX.md >}} -->
-
-\<p\>\<em\>Transcript placeholder.\</em\>\</p\>
-
-\</details\>
+</audio>
 
 ------------------------------------------------------------------------
 
@@ -101,72 +91,50 @@ family_df.info()
 -   **Evolution dataset**: 84 rows, 12 columns; continuous rates of origin for 10 sexual traits (float), with tree replicate ID and phylum labels.
 -   **Family dataset**: 1087 rows, 13 columns; binary presence (0/1) of 11 sexual traits, with tree labels and phylum categories.
 
-\<audio controls style="width:100%; margin-top:10px;"\>
+<audio controls style="width:100%; margin-top:10px;">
 
 <!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
 
 Your browser does not support the audio element.
 
-\</audio\>
-
-\<details class="transcript" style="margin-top:.5rem;"\>
-
-\<summary\>\<strong\>Transcript\</strong\>\</summary\>
-
-<!-- {{< include slides/transcripts/slideXX.md >}} -->
-
-\<p\>\<em\>Transcript placeholder.\</em\>\</p\>
-
-\</details\>
+</audio>
 
 ------------------------------------------------------------------------
 
 ## Data Overview (2)
 
--   ::::: columns
-    ::: {.column width="50%"}
-    -   **SS** — Any sexually selected trait\
-    -   **A** — Auditory trait\
-    -   **G** — Gustatory trait\
-    -   **O** — Olfactory trait\
-    -   **T** — Tactile trait\
-    -   **V** — Visual trait\
-    :::
+::::: columns
+::: {.column width="50%"}
+-   **SS** — Any sexually selected trait
+-   **A** — Auditory trait
+-   **G** — Gustatory trait
+-   **O** — Olfactory trait
+-   **T** — Tactile trait
+-   **V** — Visual trait\
+:::
 
-    ::: {.column width="50%"}
-    -   **C** — Male–male competition trait\
-    -   **F** — Female choice trait\
-    -   **K** — Female–female competition trait\
-    -   **M** — Male choice trait\
-    -   **S** — Intersexual conflict trait\
-    :::
-    :::::
+::: {.column width="50%"}
+-   **C** — Male–male competition trait
+-   **F** — Female choice trait
+-   **K** — Female–female competition trait
+-   **M** — Male choice trait
+-   **S** — Intersexual conflict trait\
+:::
+:::::
 
-\<audio controls style="width:100%; margin-top:10px;"\>
+<audio controls style="width:100%; margin-top:10px;">
 
 <!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
 
 Your browser does not support the audio element.
 
-\</audio\>
-
-\<details class="transcript" style="margin-top:.5rem;"\>
-
-\<summary\>\<strong\>Transcript\</strong\>\</summary\>
-
-<!-- {{< include slides/transcripts/slideXX.md >}} -->
-
-\<p\>\<em\>Transcript placeholder.\</em\>\</p\>
-
-\</details\>
+</audio>
 
 ------------------------------------------------------------------------
 
 ## EDA — Dataset 1
 
-\- \<Main EDA findings\>
-
-\- \*(Insert figure placeholder)\*
+\- \<Main EDA findings\> - \*(Insert figure placeholder)\*
 
 ```{python}
 #| label: fig-dataset1-eda
