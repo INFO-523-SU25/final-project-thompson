@@ -51,7 +51,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 ```
 
-## Motivation & Research
+## Motivation & Research {data-incremental="false"}
 
 ::: panel-tabset
 ### Objectives
@@ -61,7 +61,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 -   Stepping stone: refine models, improve performance\
 -   Potential: narrow candidate taxa, save time, improve relevance
 
-### Research Questions
+### Research Questions  {data-incremental="false"}
 
 1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?\
 2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
@@ -69,10 +69,10 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 ------------------------------------------------------------------------
 
-## Data Overview
+## Data Overview {data-incremental="false"}
 
-::::::: panel-tabset
-### Dataset Summary
+:::::: panel-tabset
+### Dataset Summary {data-incremental="false"}
 
 ```{python}
 import pandas as pd
@@ -97,10 +97,7 @@ print("\nFamily dataset info:")
 family_df.info()
 ```
 
--   **Evolution dataset**: 84 rows, 12 columns; continuous rates of origin for 10 sexual traits (float), with tree replicate ID and phylum labels.
--   **Family dataset**: 1087 rows, 13 columns; binary presence (0/1) of 11 sexual traits, with tree labels and phylum categories.
-
-### Sexually Selected Traits
+### Sexually Selected Traits {data-incremental="false"}
 
 ::::: columns
 ::: {.column width="50%"}
@@ -120,17 +117,36 @@ family_df.info()
 -   **S** — Intersexual conflict trait\
 :::
 :::::
-:::::::
+::::::
 
 ------------------------------------------------------------------------
 
 ## EDA — Family
 
--   Very rightly skewed indicating heavy density toward 0 than 1 (binary) and high sparsity in this dataset
+::: {.panel-tabset}
+
+### Summary {data-incremental="false"}
 
 ```{python}
-#| label: fig-dataset1-eda
+##### SUMMARY INFO numerics and categoricals
+# numeric & categorical summaries:
+numeric_df = df1.select_dtypes(include='number')
+cat_df = df1.select_dtypes(include=['object','category'])
 
+#prints summaries below
+if not numeric_df.empty:
+    print("\nSummary (numeric):\n", numeric_df.describe().T)
+else:
+    print("\nNo numeric columns for numeric summary.")
+
+if not cat_df.empty:
+    print("\nSummary (categorical):\n", cat_df.describe().T)
+else:
+    print("\nNo categorical columns for categorical summary.")
+```
+
+### Skewness {data-incremental="false"}
+```{python}
 #family dataset below
 df1 = family_df.copy()
 
@@ -144,37 +160,47 @@ id_cols = [c for c in ['Tree_Label'] if c in df1.columns]
 numeric_df = df1.select_dtypes(include='number')
 cat_df = df1.select_dtypes(include=['object','category'])
 
-# skewness & kurtosis
+# Skewness
 if not numeric_df.empty:
     with np.errstate(all='ignore'):
-        print("\nSkewness:\n", numeric_df.drop(columns=id_cols, errors='ignore').skew(numeric_only=True))
-        print("\nKurtosis:\n", numeric_df.drop(columns=id_cols, errors='ignore').kurt(numeric_only=True))
+        skew_vals = numeric_df.drop(columns=id_cols, errors='ignore').skew(numeric_only=True)
+        print(skew_vals)
 else:
-    print("\nNo numeric columns for skew/kurtosis.")
-
+    print("No numeric columns for skewness.")
 ```
 
-------------------------------------------------------------------------
-
-## EDA - Family (Plots)
-
-::: panel-tabset
-### Trait Prevalence
-
+### Kurtosis
 ```{python}
-if traits_present:
-    prev = df1[traits_present].mean().sort_values(ascending=False)
-    plt.figure(figsize=(10,4))
-    plt.bar(prev.index, prev.values)
-    plt.title("Trait prevalence (proportion present)")
-    plt.ylabel("Prevalence")
-    plt.xlabel("Traits")
-    plt.xticks(rotation=45, ha='right')
+# kurtosis
+if not numeric_df.empty:
+    with np.errstate(all='ignore'):
+        kurt_vals = numeric_df.drop(columns=id_cols, errors='ignore').kurt(numeric_only=True)
+        print(kurt_vals)
+else:
+    print("No numeric columns for kurtosis.")
+```
+
+### Correlation Matrix {data-incremental="false"}
+```{python}
+if not numeric_df.empty:
+    corr = numeric_df.corr().abs()
+
+if corr is not None:
+    plt.figure(figsize=(8,6))
+    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", cbar=True)
+    plt.title("Absolute Correlation Matrix (Family dataset traits)")
     plt.show()
 ```
 
-### Phylum Distribution
+:::
 
+------------------------------------------------------------------------
+
+## EDA - Family Plots
+
+::: panel-tabset
+
+### Phylum Distribution {data-incremental="false"}
 ```{python}
 if target_col:
     counts = df1[target_col].value_counts()
@@ -187,8 +213,7 @@ if target_col:
     plt.show()
 ```
 
-### Traits Histogram
-
+### Traits Histogram {data-incremental="false"}
 ```{python}
 num_cols_list = list(numeric_df.columns)
 if num_cols_list:
@@ -210,7 +235,9 @@ if num_cols_list:
 else:
     print("\nNo numeric columns to plot.")
 ```
+
 :::
+
 ------------------------------------------------------------------------
 
 ## EDA — Dataset 2
@@ -273,6 +300,4 @@ else:
 
 ## References & Tools
 
-\- \<List references and tools\>
-:::
-:::::::
+\- \<List references and tools\> ::: :::::::
