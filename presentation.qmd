@@ -196,7 +196,6 @@ filtered_prev = group_prev[group_prev > 0].dropna(how="all")
 print("Non-zero trait prevalence by phylum (df1):\n")
 print(filtered_prev)
 ```
-
 :::
 
 ------------------------------------------------------------------------
@@ -250,6 +249,7 @@ if binary_cols:
 ```
 
 ### Correlation Matrix {data-incremental="false"}
+
 ```{python}
 if not numeric_df.empty:
     corr = numeric_df.corr().abs()
