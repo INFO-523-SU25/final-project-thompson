@@ -152,5 +152,82 @@
     "title": "Trait-Based Prediction of Animal Taxa",
     "section": "Analysis plan",
     "text": "Analysis plan\n\nOverview\nThe primary objective is to assess and compare the predictive power and interpretability of both data.\n\n\nDataset Descriptions\n1. Family-Level Trait Data (family_df)\n\nFormat: Binary indicators (0 or 1) for the presence or absence of sexually selected traits.\nTraits include: SS, A, G, O, T, V, C, F, K, M, S\nEach row represents a taxonomic family.\nThe target variable will likely be a categorical label such as Class or a user-defined taxon.\n\n2. Evolutionary Rates Data (evolution_df)\n\nFormat: Continuous numerical values representing the origin rates of the same traits listed above.\nEach row represents a taxonomic group.\nTarget variable will match the one used in the binary dataset for comparison.\n\n\n\nExploratory Data Analysis (EDA)\nEDA will be performed separately for both datasets:\n\nDistribution plots for each trait in histogram\nVisualization of binary presence in sexually selected traits if possible\nCorrelation matrix of sexually selected traits related to each other\nSummary statistics for continuous traits.\nCount plots or bar charts showing trait prevalence by taxonomic group (e.g., class or family).\n\n\n\nModeling Approach\nFor both datasets:\n1. Data Preparation\n\nI will double check for any null values.\nI will encode target variable (animals taxa) using LabelEncoder. For the evolutionary rates, I will convert any values &gt; 0 to 1 and hot-encode these numerical columns (sexually selected traits) for the presence of sexually selected traits.\nFor evolution_df, I will standardize these sexually selected traits feature using StandardScaler.\n\n2. Models to Use\n\nDecisionTreeClassifier\nRandomForestClassifier\nLogisticRegression\n\n3. Evaluation Metrics\n\nAccuracy score\nConfusion matrix\nClassification report\nCross-validation score (cross_val_score)\nROC-AUC score\n\n4. Model Interpretation\n\nI will use SHAP to interpret trained models.\nI will generate SHAP summary plots and bar plots to highlight influential traits.\nI will compare interpretability between models trained on binary and continuous data for the evolutionary rates.\n\n\n\nComparison and Interpretation\n\nI will interpret the classification performance across both data and answer both questions. Then, I will draw conclusions about which dataset format (binary or continuous) provides stronger predictive insights for question #2.\nI will analyze SHAP outputs to identify which traits contribute most to predictions.\nI may also interpret which family has sexually selected traits and explain the results (if I have more time during the presentation)."
+  },
+  {
+    "objectID": "presentation.html#title",
+    "href": "presentation.html#title",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Title",
+    "text": "Title\n&lt;Insert Title Slide Content&gt;"
+  },
+  {
+    "objectID": "presentation.html#motivation-objective",
+    "href": "presentation.html#motivation-objective",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Motivation & Objective",
+    "text": "Motivation & Objective\n- &lt;Key motivation points&gt;\n- &lt;Objective of study/project&gt;"
+  },
+  {
+    "objectID": "presentation.html#data-overview",
+    "href": "presentation.html#data-overview",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Data Overview",
+    "text": "Data Overview\n- &lt;Dataset 1: description&gt;\n- &lt;Dataset 2: description&gt;"
+  },
+  {
+    "objectID": "presentation.html#eda-dataset-1",
+    "href": "presentation.html#eda-dataset-1",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "EDA — Dataset 1",
+    "text": "EDA — Dataset 1\n- &lt;Main EDA findings&gt;\n- *(Insert figure placeholder)*"
+  },
+  {
+    "objectID": "presentation.html#eda-dataset-2",
+    "href": "presentation.html#eda-dataset-2",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "EDA — Dataset 2",
+    "text": "EDA — Dataset 2\n- &lt;Main EDA findings&gt;\n- *(Insert figure placeholder)*"
+  },
+  {
+    "objectID": "presentation.html#modeling-approach",
+    "href": "presentation.html#modeling-approach",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Modeling Approach",
+    "text": "Modeling Approach\n- &lt;Models used&gt;\n- &lt;Train/test split&gt;\n- &lt;Evaluation metrics&gt;"
+  },
+  {
+    "objectID": "presentation.html#results",
+    "href": "presentation.html#results",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Results",
+    "text": "Results\n- &lt;Key performance summary&gt;\n- *(Insert confusion matrix, SHAP, etc.)*"
+  },
+  {
+    "objectID": "presentation.html#shap-interpretation",
+    "href": "presentation.html#shap-interpretation",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "SHAP Interpretation",
+    "text": "SHAP Interpretation\n- &lt;Side-by-side highlights&gt;\n- &lt;Key differences in feature importance&gt;"
+  },
+  {
+    "objectID": "presentation.html#conclusion",
+    "href": "presentation.html#conclusion",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Conclusion",
+    "text": "Conclusion\n- &lt;Key conclusion statements&gt;"
+  },
+  {
+    "objectID": "presentation.html#future-work",
+    "href": "presentation.html#future-work",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "Future Work",
+    "text": "Future Work\n- &lt;Future directions&gt;"
+  },
+  {
+    "objectID": "presentation.html#references-tools",
+    "href": "presentation.html#references-tools",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "References & Tools",
+    "text": "References & Tools\n- &lt;List references and tools&gt;"
   }
 ]
