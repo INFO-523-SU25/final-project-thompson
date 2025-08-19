@@ -220,26 +220,34 @@ if target_col:
 ### Traits Histogram {data-incremental="false"}
 
 ```{python}
-num_cols_list = list(numeric_df.columns)
-if num_cols_list:
-    n = len(num_cols_list)
-    ncols = 3                           # fixed 3 columns
+binary_cols = [c for c in traits_present if c in df1.columns]
+
+# histograms for binary traits (0/1 only)
+if binary_cols:
+    n = len(binary_cols)
+    ncols = min(5, n)
     nrows = (n + ncols - 1) // ncols
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(4*ncols, 3*nrows))
-    axes = np.array(axes).reshape(-1)
-    for i, col in enumerate(num_cols_list):
+    fig, axes = plt.subplots(
+        nrows=nrows, ncols=ncols,
+        figsize=(2.5*ncols, 2*nrows)  # shrink each plot
+    )
+    axes = np.array(axes).reshape(-1) if isinstance(axes, np.ndarray) else [axes]
+
+    for i, col in enumerate(binary_cols):
         ax = axes[i]
-        ax.hist(df1[col].dropna(), bins=25, edgecolor="black")
-        ax.set_title(col)
-        ax.set_xlabel("Binary")
-        ax.set_ylabel("Count")
+        ax.hist(df1[col].dropna(), bins=[-0.5, 0.5, 1.5], edgecolor="black")
+        ax.set_title(col, fontsize=9)  # smaller title font
+        ax.set_xticks([0, 1])
+        ax.set_xlabel("Binary", fontsize=8)
+        ax.set_ylabel("Count", fontsize=8)
+
     for ax in axes[n:]:
         ax.axis('off')
-    plt.tight_layout()
+
+    plt.tight_layout(pad=1.0)  # tighter spacing
     plt.show()
-else:
-    print("\nNo numeric columns to plot.")
 ```
+
 :::
 
 ------------------------------------------------------------------------
