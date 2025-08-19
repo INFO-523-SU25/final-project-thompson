@@ -184,18 +184,19 @@ else:
     print("No numeric columns for kurtosis.")
 ```
 
-### Correlation Matrix {data-incremental="false"}
+### Traits by Phylum (non-zero)
 
 ```{python}
-if not numeric_df.empty:
-    corr = numeric_df.corr().abs()
+#trait prevalence by phylum
+group_prev = df1.groupby("Phylum")[['SS','A','G','O','T','V','C','F','K','M','S']].mean()
 
-if corr is not None:
-    plt.figure(figsize=(8,6))
-    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", cbar=True)
-    plt.title("Absolute Correlation Matrix (Family dataset traits)")
-    plt.show()
+#filter to only show phylum × traits where prevalence > 0
+filtered_prev = group_prev[group_prev > 0].dropna(how="all")
+
+print("Non-zero trait prevalence by phylum (df1):\n")
+print(filtered_prev)
 ```
+
 :::
 
 ------------------------------------------------------------------------
@@ -245,6 +246,18 @@ if binary_cols:
         ax.axis('off')
 
     plt.tight_layout(pad=1.0)  # tighter spacing
+    plt.show()
+```
+
+### Correlation Matrix {data-incremental="false"}
+```{python}
+if not numeric_df.empty:
+    corr = numeric_df.corr().abs()
+
+if corr is not None:
+    plt.figure(figsize=(8,6))
+    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", cbar=True)
+    plt.title("Absolute Correlation Matrix (Family dataset traits)")
     plt.show()
 ```
 :::
