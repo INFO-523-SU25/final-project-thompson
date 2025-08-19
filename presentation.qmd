@@ -51,63 +51,56 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 ```
 
-## Motivation & Objective
+## Motivation & Research
 
-::::: columns
-::: {.column width="50%"}
--   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)
+::: panel-tabset
+### Objectives
 
--   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)
-:::
-
-::: {.column width="50%"}
--   Stepping stone: refine models, improve performance
-
+-   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)\
+-   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)\
+-   Stepping stone: refine models, improve performance\
 -   Potential: narrow candidate taxa, save time, improve relevance
-:::
-:::::
-
-------------------------------------------------------------------------
 
 ### Research Questions
 
-1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?
+1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?\
 2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
+:::
 
 ------------------------------------------------------------------------
 
-## Data Overview (1)
+## Data Overview
+
+::::::: panel-tabset
+### Dataset Summary
 
 ```{python}
 import pandas as pd
 
-#file paths
+# file paths
 evolution_path = "/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data/animals_rateof_evolution.csv"
 family_path    = "/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data/family_related_data.csv"
 
-#load data here
+# load data
 evolution_df = pd.read_csv(evolution_path)
 family_df    = pd.read_csv(family_path)
 
-#shapes
+# shapes
 print("Evolution dataset shape:", evolution_df.shape)
 print("Family dataset shape:", family_df.shape)
 
-#info
+# info
 print("\nEvolution dataset info:")
 evolution_df.info()
 
 print("\nFamily dataset info:")
 family_df.info()
-
 ```
 
 -   **Evolution dataset**: 84 rows, 12 columns; continuous rates of origin for 10 sexual traits (float), with tree replicate ID and phylum labels.
 -   **Family dataset**: 1087 rows, 13 columns; binary presence (0/1) of 11 sexual traits, with tree labels and phylum categories.
 
-------------------------------------------------------------------------
-
-### Data Overview (2)
+### Sexually Selected Traits
 
 ::::: columns
 ::: {.column width="50%"}
@@ -127,12 +120,13 @@ family_df.info()
 -   **S** — Intersexual conflict trait\
 :::
 :::::
+:::::::
 
 ------------------------------------------------------------------------
 
 ## EDA — Family
 
--   very rightly skewed indicating heavy density toward 0 than 1 (binary) and high sparsity in this dataset
+-   Very rightly skewed indicating heavy density toward 0 than 1 (binary) and high sparsity in this dataset
 
 ```{python}
 #| label: fig-dataset1-eda
@@ -160,12 +154,14 @@ else:
 
 ```
 
-### EDA - Family (Plots)
+------------------------------------------------------------------------
+
+## EDA - Family (Plots)
+
+::: panel-tabset
+### Trait Prevalence
 
 ```{python}
-
-
-#prevalence of binary traits
 if traits_present:
     prev = df1[traits_present].mean().sort_values(ascending=False)
     plt.figure(figsize=(10,4))
@@ -175,8 +171,11 @@ if traits_present:
     plt.xlabel("Traits")
     plt.xticks(rotation=45, ha='right')
     plt.show()
+```
 
-#phylum distribution
+### Phylum Distribution
+
+```{python}
 if target_col:
     counts = df1[target_col].value_counts()
     plt.figure(figsize=(12,4))
@@ -186,21 +185,24 @@ if target_col:
     plt.xlabel("Phylum Name")
     plt.xticks(rotation=90)
     plt.show()
+```
 
-# histograms for numeric (binary will appear as spikes at 0/1)
+### Traits Histogram
+
+```{python}
 num_cols_list = list(numeric_df.columns)
 if num_cols_list:
     n = len(num_cols_list)
-    ncols = min(5, n) #cap grid at 5 columns wide
-    nrows = (n + ncols - 1) // ncols  #calculate plot rows so every plot fits neatly (e.g. 11 plots → (11+4)//5 = 3 rows)
+    ncols = 3                           # fixed 3 columns
+    nrows = (n + ncols - 1) // ncols
     fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(4*ncols, 3*nrows))
-    axes = np.array(axes).reshape(-1) if isinstance(axes, np.ndarray) else [axes]
-    for i, col in enumerate(num_cols_list): #loop through each numeric column and assign it to a subplot
+    axes = np.array(axes).reshape(-1)
+    for i, col in enumerate(num_cols_list):
         ax = axes[i]
         ax.hist(df1[col].dropna(), bins=25, edgecolor="black")
         ax.set_title(col)
         ax.set_xlabel("Binary")
-        ax.set_ylabel("Count")   
+        ax.set_ylabel("Count")
     for ax in axes[n:]:
         ax.axis('off')
     plt.tight_layout()
@@ -208,7 +210,7 @@ if num_cols_list:
 else:
     print("\nNo numeric columns to plot.")
 ```
-
+:::
 ------------------------------------------------------------------------
 
 ## EDA — Dataset 2
@@ -272,3 +274,5 @@ else:
 ## References & Tools
 
 \- \<List references and tools\>
+:::
+:::::::
