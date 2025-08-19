@@ -52,14 +52,6 @@ execute:
 1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?
 2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
 
-<audio controls style="width:100%; margin-top:10px;">
-
-<!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
-
-Your browser does not support the audio element.
-
-</audio>
-
 ------------------------------------------------------------------------
 
 ## Data Overview (1)
@@ -91,14 +83,6 @@ family_df.info()
 -   **Evolution dataset**: 84 rows, 12 columns; continuous rates of origin for 10 sexual traits (float), with tree replicate ID and phylum labels.
 -   **Family dataset**: 1087 rows, 13 columns; binary presence (0/1) of 11 sexual traits, with tree labels and phylum categories.
 
-<audio controls style="width:100%; margin-top:10px;">
-
-<!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
-
-Your browser does not support the audio element.
-
-</audio>
-
 ------------------------------------------------------------------------
 
 ## Data Overview (2)
@@ -121,14 +105,6 @@ Your browser does not support the audio element.
 -   **S** — Intersexual conflict trait\
 :::
 :::::
-
-<audio controls style="width:100%; margin-top:10px;">
-
-<!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
-
-Your browser does not support the audio element.
-
-</audio>
 
 ------------------------------------------------------------------------
 
