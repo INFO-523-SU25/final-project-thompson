@@ -1002,7 +1002,8 @@ Matthew Qi Lan Thompson
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li class="fragment"><a href="#/motivation-objective" id="/toc-motivation-objective">Motivation &amp; Objective</a></li>
-<li class="fragment"><a href="#/data-overview" id="/toc-data-overview">Data Overview</a></li>
+<li class="fragment"><a href="#/data-overview-1" id="/toc-data-overview-1">Data Overview (1)</a></li>
+<li class="fragment"><a href="#/data-overview-2" id="/toc-data-overview-2">Data Overview (2)</a></li>
 <li class="fragment"><a href="#/eda-dataset-1" id="/toc-eda-dataset-1">EDA — Dataset 1</a></li>
 <li class="fragment"><a href="#/eda-dataset-2" id="/toc-eda-dataset-2">EDA — Dataset 2</a></li>
 <li class="fragment"><a href="#/modeling-approach" id="/toc-modeling-approach">Modeling Approach</a></li>
@@ -1017,10 +1018,22 @@ Matthew Qi Lan Thompson
 <section id="motivation-objective" class="slide level2">
 <h2>Motivation &amp; Objective</h2>
 <ul>
-<li class="fragment">Challenges in classification such as physiology, geography, genomic similarity, etc. (Tessler et al., 2022; van der Gulik et al., 2023)</li>
-<li class="fragment">Machine learning for taxonomy is a pretty recent approach and needs evaluation (Alipour et al., 2024)</li>
-<li class="fragment">Could serve as a stepping stone with refined models and improved performances</li>
-<li class="fragment">Potential: narrow candidate taxa, save time, improve relevance (with sufficient accuracy) testing</li>
+<li class="fragment"><div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)<br>
+</li>
+<li class="fragment">Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)<br>
+</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Stepping stone: refine models, improve performance<br>
+</li>
+<li class="fragment">Potential: narrow candidate taxa, save time, improve relevance<br>
+</li>
+</ul>
+</div></div></li>
 </ul>
 <p><strong>Research Questions</strong></p>
 <ol type="1">
@@ -1037,9 +1050,9 @@ Matthew Qi Lan Thompson
 <p>&lt;p&gt;&lt;em&gt;Transcript placeholder.&lt;/em&gt;&lt;/p&gt;</p>
 <p>&lt;/details&gt;</p>
 </section>
-<section id="data-overview" class="slide level2">
-<h2>Data Overview</h2>
-<div id="bd80efcb" class="cell" data-execution_count="1">
+<section id="data-overview-1" class="slide level2">
+<h2>Data Overview (1)</h2>
+<div id="138588fe" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>Evolution dataset shape: (84, 12)
 Family dataset shape: (1087, 13)
@@ -1088,19 +1101,53 @@ dtypes: int64(11), object(2)
 memory usage: 110.5+ KB</code></pre>
 </div>
 </div>
-<p><strong>List of sexually selected traits</strong></p>
 <ul>
-<li class="fragment"><strong>SS</strong> — Any sexually selected trait</li>
-<li class="fragment"><strong>A</strong> — Auditory trait</li>
-<li class="fragment"><strong>G</strong> — Gustatory trait</li>
-<li class="fragment"><strong>O</strong> — Olfactory trait</li>
-<li class="fragment"><strong>T</strong> — Tactile trait</li>
-<li class="fragment"><strong>V</strong> — Visual trait</li>
-<li class="fragment"><strong>C</strong> — Male–male competition trait</li>
-<li class="fragment"><strong>F</strong> — Female choice trait</li>
-<li class="fragment"><strong>K</strong> — Female–female competition trait</li>
-<li class="fragment"><strong>M</strong> — Male choice trait</li>
-<li class="fragment"><strong>S</strong> — Intersexual conflict trait</li>
+<li class="fragment"><strong>Evolution dataset</strong>: 84 rows, 12 columns; continuous rates of origin for 10 sexual traits (float), with tree replicate ID and phylum labels.</li>
+<li class="fragment"><strong>Family dataset</strong>: 1087 rows, 13 columns; binary presence (0/1) of 11 sexual traits, with tree labels and phylum categories.</li>
+</ul>
+<p>&lt;audio controls style=“width:100%; margin-top:10px;”&gt;</p>
+<!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
+<p>Your browser does not support the audio element.</p>
+<p>&lt;/audio&gt;</p>
+<p>&lt;details class=“transcript” style=“margin-top:.5rem;”&gt;</p>
+<p>&lt;summary&gt;&lt;strong&gt;Transcript&lt;/strong&gt;&lt;/summary&gt;</p>
+<!-- {{< include slides/transcripts/slideXX.md >}} -->
+<p>&lt;p&gt;&lt;em&gt;Transcript placeholder.&lt;/em&gt;&lt;/p&gt;</p>
+<p>&lt;/details&gt;</p>
+</section>
+<section id="data-overview-2" class="slide level2">
+<h2>Data Overview (2)</h2>
+<ul>
+<li class="fragment"><div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><strong>SS</strong> — Any sexually selected trait<br>
+</li>
+<li class="fragment"><strong>A</strong> — Auditory trait<br>
+</li>
+<li class="fragment"><strong>G</strong> — Gustatory trait<br>
+</li>
+<li class="fragment"><strong>O</strong> — Olfactory trait<br>
+</li>
+<li class="fragment"><strong>T</strong> — Tactile trait<br>
+</li>
+<li class="fragment"><strong>V</strong> — Visual trait<br>
+</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><strong>C</strong> — Male–male competition trait<br>
+</li>
+<li class="fragment"><strong>F</strong> — Female choice trait<br>
+</li>
+<li class="fragment"><strong>K</strong> — Female–female competition trait<br>
+</li>
+<li class="fragment"><strong>M</strong> — Male choice trait<br>
+</li>
+<li class="fragment"><strong>S</strong> — Intersexual conflict trait<br>
+</li>
+</ul>
+</div></div></li>
 </ul>
 <p>&lt;audio controls style=“width:100%; margin-top:10px;”&gt;</p>
 <!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
