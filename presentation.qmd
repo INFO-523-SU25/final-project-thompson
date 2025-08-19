@@ -5,7 +5,7 @@ author: "Matthew Qi Lan Thompson"
 
 #slides setup
 title-slide-attributes:
-  data-background-image: images/scenery.jpg
+  data-background-image: images/tree_scenery.jpg
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
@@ -38,7 +38,7 @@ execute:
 -   Challenges in classification such as physiology, geography, genomic similarity, etc. (Tessler et al., 2022; van der Gulik et al., 2023)
 -   Machine learning for taxonomy is a pretty recent approach and needs evaluation (Alipour et al., 2024)
 -   Could serve as a stepping stone with refined models and improved performances
--   Potential: narrow candidate taxa, save time, improve relevance (with sufficient accuracy)
+-   Potential: narrow candidate taxa, save time, improve relevance (with sufficient accuracy) testing
 
 **Research Questions**
 
