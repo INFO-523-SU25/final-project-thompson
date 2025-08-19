@@ -33,6 +33,24 @@ execute:
   error: false
 ---
 
+```{python}
+import numpy as np              # numbers, arrays, math
+import pandas as pd             # tables, csv loading, data handling
+import os    
+import matplotlib.pyplot as plt   # plotting
+import shap                       # shap values for model explainability
+
+from sklearn.tree import DecisionTreeClassifier       # decision tree model
+from sklearn.ensemble import RandomForestClassifier   # random forest model
+from sklearn.linear_model import LogisticRegression   # logistic regression model
+
+from sklearn.model_selection import train_test_split, StratifiedKFold
+from sklearn.utils.class_weight import compute_class_weight
+from sklearn.model_selection import cross_val_score   # cross validation scoring
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score, balanced_accuracy_score
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+```
+
 ## Motivation & Objective
 
 ::::: columns
