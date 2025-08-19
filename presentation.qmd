@@ -39,6 +39,7 @@ import pandas as pd             # tables, csv loading, data handling
 import os    
 import matplotlib.pyplot as plt   # plotting
 import shap                       # shap values for model explainability
+import seaborn as sns 
 
 from sklearn.tree import DecisionTreeClassifier       # decision tree model
 from sklearn.ensemble import RandomForestClassifier   # random forest model
