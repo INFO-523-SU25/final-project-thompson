@@ -61,7 +61,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 -   Stepping stone: refine models, improve performance\
 -   Potential: narrow candidate taxa, save time, improve relevance
 
-### Research Questions  {data-incremental="false"}
+### Research Questions {data-incremental="false"}
 
 1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?\
 2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
@@ -123,8 +123,22 @@ family_df.info()
 
 ## EDA — Family
 
-::: {.panel-tabset}
+```{python}
+#family dataset below
+df1 = family_df.copy()
 
+# pick likely target + trait columns
+all_traits = ['SS','A','G','O','T','V','C','F','K','M','S']
+traits_present = [c for c in all_traits if c in df1.columns]
+target_col = 'Phylum' if 'Phylum' in df1.columns else None
+id_cols = [c for c in ['Tree_Label'] if c in df1.columns]
+
+# numeric & categorical summaries:
+numeric_df = df1.select_dtypes(include='number')
+cat_df = df1.select_dtypes(include=['object','category'])
+```
+
+::: panel-tabset
 ### Summary {data-incremental="false"}
 
 ```{python}
@@ -146,20 +160,8 @@ else:
 ```
 
 ### Skewness {data-incremental="false"}
+
 ```{python}
-#family dataset below
-df1 = family_df.copy()
-
-# pick likely target + trait columns
-all_traits = ['SS','A','G','O','T','V','C','F','K','M','S']
-traits_present = [c for c in all_traits if c in df1.columns]
-target_col = 'Phylum' if 'Phylum' in df1.columns else None
-id_cols = [c for c in ['Tree_Label'] if c in df1.columns]
-
-# numeric & categorical summaries:
-numeric_df = df1.select_dtypes(include='number')
-cat_df = df1.select_dtypes(include=['object','category'])
-
 # Skewness
 if not numeric_df.empty:
     with np.errstate(all='ignore'):
@@ -170,6 +172,7 @@ else:
 ```
 
 ### Kurtosis
+
 ```{python}
 # kurtosis
 if not numeric_df.empty:
@@ -181,6 +184,7 @@ else:
 ```
 
 ### Correlation Matrix {data-incremental="false"}
+
 ```{python}
 if not numeric_df.empty:
     corr = numeric_df.corr().abs()
@@ -191,7 +195,6 @@ if corr is not None:
     plt.title("Absolute Correlation Matrix (Family dataset traits)")
     plt.show()
 ```
-
 :::
 
 ------------------------------------------------------------------------
@@ -199,8 +202,8 @@ if corr is not None:
 ## EDA - Family Plots
 
 ::: panel-tabset
-
 ### Phylum Distribution {data-incremental="false"}
+
 ```{python}
 if target_col:
     counts = df1[target_col].value_counts()
@@ -214,6 +217,7 @@ if target_col:
 ```
 
 ### Traits Histogram {data-incremental="false"}
+
 ```{python}
 num_cols_list = list(numeric_df.columns)
 if num_cols_list:
@@ -235,7 +239,6 @@ if num_cols_list:
 else:
     print("\nNo numeric columns to plot.")
 ```
-
 :::
 
 ------------------------------------------------------------------------
