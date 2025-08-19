@@ -5,7 +5,7 @@ author: "Matthew Qi Lan Thompson"
 
 #slides setup
 title-slide-attributes:
-  data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
+  data-background-image: images/scenery.jpg
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
@@ -27,31 +27,101 @@ editor: visual
 jupyter: python3
 
 execute:
-  echo: false        #hidden code input; outputs still renders
+  echo: false
   warning: false
   message: false
   error: false
 ---
 
-## Title
-
-\<Insert Title Slide Content\>
-
-------------------------------------------------------------------------
-
 ## Motivation & Objective
 
-\- \<Key motivation points\>
+-   Challenges in classification such as physiology, geography, genomic similarity, etc. (Tessler et al., 2022; van der Gulik et al., 2023)
+-   Machine learning for taxonomy is a pretty recent approach and needs evaluation (Alipour et al., 2024)
+-   Could serve as a stepping stone with refined models and improved performances
+-   Potential: narrow candidate taxa, save time, improve relevance (with sufficient accuracy)
 
-\- \<Objective of study/project\>
+**Research Questions**
+
+1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?
+2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
+
+\<audio controls style="width:100%; margin-top:10px;"\>
+
+<!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
+
+Your browser does not support the audio element.
+
+\</audio\>
+
+\<details class="transcript" style="margin-top:.5rem;"\>
+
+\<summary\>\<strong\>Transcript\</strong\>\</summary\>
+
+<!-- {{< include slides/transcripts/slideXX.md >}} -->
+
+\<p\>\<em\>Transcript placeholder.\</em\>\</p\>
+
+\</details\>
 
 ------------------------------------------------------------------------
 
 ## Data Overview
 
-\- \<Dataset 1: description\>
+```{python}
+import pandas as pd
 
-\- \<Dataset 2: description\>
+#file paths
+evolution_path = "/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data/animals_rateof_evolution.csv"
+family_path    = "/Users/matthewthompson/Documents/Academics/DS Masters Academics/Data Mining and Discovery/Assignments/final-project-thompson/data/family_related_data.csv"
+
+#load data here
+evolution_df = pd.read_csv(evolution_path)
+family_df    = pd.read_csv(family_path)
+
+#shapes
+print("Evolution dataset shape:", evolution_df.shape)
+print("Family dataset shape:", family_df.shape)
+
+#info
+print("\nEvolution dataset info:")
+evolution_df.info()
+
+print("\nFamily dataset info:")
+family_df.info()
+
+```
+
+**List of sexually selected traits**
+
+-   **SS** — Any sexually selected trait
+-   **A** — Auditory trait
+-   **G** — Gustatory trait
+-   **O** — Olfactory trait
+-   **T** — Tactile trait
+-   **V** — Visual trait
+-   **C** — Male–male competition trait
+-   **F** — Female choice trait
+-   **K** — Female–female competition trait
+-   **M** — Male choice trait
+-   **S** — Intersexual conflict trait
+
+\<audio controls style="width:100%; margin-top:10px;"\>
+
+<!-- <source src="slides/audio/slideXX.mp3" type="audio/mpeg"> -->
+
+Your browser does not support the audio element.
+
+\</audio\>
+
+\<details class="transcript" style="margin-top:.5rem;"\>
+
+\<summary\>\<strong\>Transcript\</strong\>\</summary\>
+
+<!-- {{< include slides/transcripts/slideXX.md >}} -->
+
+\<p\>\<em\>Transcript placeholder.\</em\>\</p\>
+
+\</details\>
 
 ------------------------------------------------------------------------
 
@@ -130,5 +200,3 @@ execute:
 ## References & Tools
 
 \- \<List references and tools\>
-
-------------------------------------------------------------------------
