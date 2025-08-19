@@ -38,16 +38,20 @@ execute:
 ::::: columns
 ::: {.column width="50%"}
 -   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)
+
 -   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)
 :::
 
 ::: {.column width="50%"}
 -   Stepping stone: refine models, improve performance
+
 -   Potential: narrow candidate taxa, save time, improve relevance
 :::
 :::::
 
-**Research Questions**
+------------------------------------------------------------------------
+
+### Research Questions
 
 1.  How accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?
 2.  Do evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?
@@ -85,7 +89,7 @@ family_df.info()
 
 ------------------------------------------------------------------------
 
-## Data Overview (2)
+### Data Overview (2)
 
 ::::: columns
 ::: {.column width="50%"}
@@ -108,14 +112,83 @@ family_df.info()
 
 ------------------------------------------------------------------------
 
-## EDA — Dataset 1
+## EDA — Family
 
-\- \<Main EDA findings\> - \*(Insert figure placeholder)\*
+-   very rightly skewed indicating heavy density toward 0 than 1 (binary) and high sparsity in this dataset
 
 ```{python}
 #| label: fig-dataset1-eda
-# (placeholder code to generate visualization)
 
+#family dataset below
+df1 = family_df.copy()
+
+# pick likely target + trait columns
+all_traits = ['SS','A','G','O','T','V','C','F','K','M','S']
+traits_present = [c for c in all_traits if c in df1.columns]
+target_col = 'Phylum' if 'Phylum' in df1.columns else None
+id_cols = [c for c in ['Tree_Label'] if c in df1.columns]
+
+# numeric & categorical summaries:
+numeric_df = df1.select_dtypes(include='number')
+cat_df = df1.select_dtypes(include=['object','category'])
+
+# skewness & kurtosis
+if not numeric_df.empty:
+    with np.errstate(all='ignore'):
+        print("\nSkewness:\n", numeric_df.drop(columns=id_cols, errors='ignore').skew(numeric_only=True))
+        print("\nKurtosis:\n", numeric_df.drop(columns=id_cols, errors='ignore').kurt(numeric_only=True))
+else:
+    print("\nNo numeric columns for skew/kurtosis.")
+
+```
+
+### EDA - Family (Plots)
+
+```{python}
+
+
+#prevalence of binary traits
+if traits_present:
+    prev = df1[traits_present].mean().sort_values(ascending=False)
+    plt.figure(figsize=(10,4))
+    plt.bar(prev.index, prev.values)
+    plt.title("Trait prevalence (proportion present)")
+    plt.ylabel("Prevalence")
+    plt.xlabel("Traits")
+    plt.xticks(rotation=45, ha='right')
+    plt.show()
+
+#phylum distribution
+if target_col:
+    counts = df1[target_col].value_counts()
+    plt.figure(figsize=(12,4))
+    plt.bar(counts.index, counts.values)
+    plt.title(f"{target_col} distribution")
+    plt.ylabel("Count")
+    plt.xlabel("Phylum Name")
+    plt.xticks(rotation=90)
+    plt.show()
+
+# histograms for numeric (binary will appear as spikes at 0/1)
+num_cols_list = list(numeric_df.columns)
+if num_cols_list:
+    n = len(num_cols_list)
+    ncols = min(5, n) #cap grid at 5 columns wide
+    nrows = (n + ncols - 1) // ncols  #calculate plot rows so every plot fits neatly (e.g. 11 plots → (11+4)//5 = 3 rows)
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(4*ncols, 3*nrows))
+    axes = np.array(axes).reshape(-1) if isinstance(axes, np.ndarray) else [axes]
+    for i, col in enumerate(num_cols_list): #loop through each numeric column and assign it to a subplot
+        ax = axes[i]
+        ax.hist(df1[col].dropna(), bins=25, edgecolor="black")
+        ax.set_title(col)
+        ax.set_xlabel("Binary")
+        ax.set_ylabel("Count")   
+    for ax in axes[n:]:
+        ax.axis('off')
+    plt.tight_layout()
+    plt.show()
+else:
+    print("\nNo numeric columns to plot.")
 ```
 
 ------------------------------------------------------------------------
