@@ -25,6 +25,8 @@ website:
         href: proposal.qmd
       - text: Presentation
         href: presentation.qmd
+      - text: Citations
+        href: citations.qmd
 
 format:
   html:
