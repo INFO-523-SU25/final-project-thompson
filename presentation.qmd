@@ -396,51 +396,56 @@ else:
 
 ## Modeling Approach
 
-:::::: panel-tabset
+::::::::: panel-tabset
 ### Data Preprocessing {data-incremental="false"}
 
-**Target encoding**: - New feature created and label encoded: **5 superphyla groups**: ::::: columns ::: {.column width="50%"} - Ecdysozoa\
-- Lophotrochozoa\
-- Deuterostomia
+**Target encoding** - Created feature: **Superphylum** (label-encoded, 5 groups)
+
+::::: columns
+::: {.column width="50%"}
+-   Ecdysozoa
+-   Lophotrochozoa
+-   Deuterostomia
 :::
 
 ::: {.column width="50%"}
--   Basal Metazoa & Non-Bilaterians\
--   Basal Bilateria\
+-   Basal Metazoa & Non-Bilaterians
+-   Basal Bilateria
 :::
+:::::
 
 ### Data Preprocessing (Continued)
 
--   **Family dataset**:
+-   **Family dataset**
     -   Binary trait presence (0/1) kept
-    -   class weights
--   **Evolution dataset**:
+    -   Class weights applied
+-   **Evolution dataset**
     -   Trait rates log-transformed (`log1p`)
 
 ### Modeling Approaches
 
 ::::: columns
 ::: {.column width="50%"}
--   Both standardized (high skewness)\
--   Train/test 1/3 split\
--   Stratified by superphyla\
+-   Standardized features (skewness)
+-   Train/test split = 1/3
+-   Stratified by superphyla
 :::
 
 ::: {.column width="50%"}
--   Excluded ID & class cols\
+-   Excluded ID & class columns
 -   Models:
-    -   Logistic Regression\
-    -   Random Forest\
-    -   Decision Tree\
+    -   Logistic Regression
+    -   Random Forest
+    -   Decision Tree
 :::
 :::::
-::::::
 
 ### Evaluation Metrics
 
--   Accuracy (overall accuracy of correctly classified samples)
--   Balanced Accuracy (averaged recall across class)
--   Macro F1 (averaged F1 across class)
+-   Accuracy (overall correct)
+-   Balanced Accuracy (avg recall per class)
+-   Macro F1 (avg F1 per class)
+:::::::::
 
 ------------------------------------------------------------------------
 
