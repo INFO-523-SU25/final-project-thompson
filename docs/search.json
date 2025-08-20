@@ -193,7 +193,7 @@
     "href": "presentation.html#modeling-approach",
     "title": "Predicting Animal Phyla from Sexually Selected Traits",
     "section": "Modeling Approach",
-    "text": "Modeling Approach\n\nData PreprocessingModeling ApproachesEvaluation Metrics\n\n\n\nTarget encoding:\n\nNew feature created and label encoded: 5 superphyla groups:\n\nEcdysozoa\nLophotrochozoa\nDeuterostomia\nBasal Metazoa & Non-Bilaterians\nBasal Bilateria\n\n\nFamily dataset:\n\nBinary trait presence (0/1) kept\nclass weights\n\nEvolution dataset:\n\nTrait rates log-transformed (log1p)\n\n\n\n\n\nBoth standardized due to high skewness\nTrain/test 1/3 split for evolution with smaller dataset and stratified by superphyla\nID and class columns (e.g., Tree_Label, Phylum) excluded from modeling\nModels:\n\nLogistic Regression\nRandom Forest\nDecision Trees\n\n\n\n\n\nAccuracy (overall accuracy of correctly classified samples)\nBalanced Accuracy (averaged recall across class)\nMacro F1 (averaged F1 across class)"
+    "text": "Modeling Approach\n\nData PreprocessingData Preprocessing (Continued)Modeling ApproachesEvaluation Metrics\n\n\nTarget encoding - Created feature: Superphylum (label-encoded, 5 groups)\n\n\n\nEcdysozoa\nLophotrochozoa\nDeuterostomia\n\n\n\nBasal Metazoa & Non-Bilaterians\nBasal Bilateria\n\n\n\n\n\nFamily dataset\n\nBinary trait presence (0/1) kept\nClass weights applied\n\nEvolution dataset\n\nTrait rates log-transformed (log1p)\n\n\n\n\n\n\n\nStandardized features (skewness)\nTrain/test split = 1/3\nStratified by superphyla\n\n\n\nExcluded ID & class columns\nModels:\n\nLogistic Regression\nRandom Forest\nDecision Tree\n\n\n\n\n\n\nAccuracy (overall correct)\nBalanced Accuracy (avg recall per class)\nMacro F1 (avg F1 per class)"
   },
   {
     "objectID": "presentation.html#results",
@@ -214,7 +214,7 @@
     "href": "presentation.html#conclusion",
     "title": "Predicting Animal Phyla from Sexually Selected Traits",
     "section": "Conclusion",
-    "text": "Conclusion\nConclusion - Conclusion: evolution has stronger overall predictive power than family (binary) - Future works or potential applications: - Remove SS traits and redo modeling - Improve data quality - Consider potential predictive signal overlaps - Different models? - SHAP applications to biological interpretations"
+    "text": "Conclusion\n\nConclusion: evolution has stronger overall predictive power than family (binary)\nFuture works or potential applications:\n\nRemove SS traits and redo modeling\nImprove data quality\nConsider potential predictive signal overlaps\nDifferent models?\nSHAP applications to biological interpretations"
   },
   {
     "objectID": "presentation.html#future-work",
