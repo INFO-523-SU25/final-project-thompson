@@ -363,6 +363,8 @@ if target_col:
 
 ```{python}
 #presence prevalence derived from rates (>0)
+cont_cols = [c for c in traits_present if c in df2.columns]
+
 if cont_cols:
     presence = (df2[cont_cols] > 0).mean().sort_values(ascending=False)
     plt.figure(figsize=(10,4))
@@ -378,7 +380,6 @@ if cont_cols:
 
 ```{python}
 #correlations
-cont_cols = [c for c in traits_present if c in df2.columns]
 if cont_cols:
     corr = df2[cont_cols].corr().abs()
     # Heatmap
