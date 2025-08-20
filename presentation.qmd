@@ -179,6 +179,7 @@ print(filtered_prev)
 
 ::: panel-tabset
 ### Distribution {data-incremental="false"}
+
 ```{python}
 if target_col:
     counts = df1[target_col].value_counts()
@@ -192,6 +193,7 @@ if target_col:
 ```
 
 ### Prevalence {data-incremental="false"}
+
 ```{python}
 #prevalence of binary traits
 if traits_present:
@@ -206,6 +208,7 @@ if traits_present:
 ```
 
 ### Binary Presence {data-incremental="false"}
+
 ```{python}
 binary_cols = [c for c in traits_present if c in df1.columns]
 
@@ -269,8 +272,9 @@ cat_df = df2.select_dtypes(include=['object','category'])
 
 ```
 
-:::: panel-tabset
+::: panel-tabset
 ### Summary {data-incremental="false"}
+
 ```{python}
 if not numeric_df.empty:
     print("\nSummary (numeric):\n", numeric_df.describe().T)
@@ -285,6 +289,7 @@ else:
 ```
 
 ### Outliers {data-incremental="false"}
+
 ```{python}
 #traits to scan (exclude ID/target)
 trait_cols = [c for c in df2.columns if c not in ["Tree", "Phylum"]]
@@ -331,6 +336,7 @@ print(outlier_summary.to_string(index=False))
 ```
 
 ### Traits by Phylum {data-incremental="false"}
+
 ```{python}
 #filter df2 trait means by phylum to only show > 0 values
 trait_means = df2.groupby("Phylum")[['A','G','O','T','V','C','F','K','M','S']].mean()
@@ -339,7 +345,7 @@ filtered = trait_means[trait_means > 0].dropna(how="all")
 print("Non-zero trait means by phylum:\n")
 print(filtered)
 ```
-::::
+:::
 
 ------------------------------------------------------------------------
 
@@ -347,6 +353,7 @@ print(filtered)
 
 ::: panel-tabset
 ### Distribution {data-incremental="false"}
+
 ```{python}
 #phylum distribution
 if target_col:
@@ -400,7 +407,7 @@ if cont_cols:
 else:
     print("No continuous trait columns found in df2.")
 ```
-::: 
+:::
 
 ------------------------------------------------------------------------
 
@@ -451,5 +458,3 @@ else:
 ## References & Tools
 
 \- \<List references and tools\>
-:::
-::::
