@@ -5,7 +5,8 @@ project:
     - about.qmd
     - proposal.qmd
     - presentation.qmd
-    - data.qmd    
+    - data.qmd
+    - citations.qmd
   output-dir: docs
 
 website:
