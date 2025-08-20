@@ -171,6 +171,7 @@ filtered_prev = group_prev[group_prev > 0].dropna(how="all")
 print("Non-zero trait prevalence by phylum (df1):\n")
 print(filtered_prev)
 ```
+
 :::
 
 ------------------------------------------------------------------------
@@ -209,6 +210,7 @@ if traits_present:
 
 ### Binary Presence {data-incremental="false"}
 
+<div style="height:500px; overflow-y: scroll; overflow-x: hidden; border:1px solid #ccc;">
 ```{python}
 binary_cols = [c for c in traits_present if c in df1.columns]
 
@@ -236,10 +238,13 @@ if binary_cols:
 
     plt.tight_layout(pad=1.0)  # tighter spacing
     plt.show()
+
+</div>
 ```
 
 ### Correlation Matrix {data-incremental="false"}
 
+<div style="height:500px; overflow-y: scroll; overflow-x: hidden; border:1px solid #ccc;">
 ```{python}
 if not numeric_df.empty:
     corr = numeric_df.corr().abs()
@@ -249,7 +254,10 @@ if corr is not None:
     sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", cbar=True)
     plt.title("Absolute Correlation Matrix (Family dataset traits)")
     plt.show()
+
+</div>
 ```
+
 :::
 
 ------------------------------------------------------------------------
@@ -384,7 +392,7 @@ if cont_cols:
 ```
 
 ### Correlation Matrix {data-incremental="false"}
-
+<div style="height:500px; overflow-y: scroll; overflow-x: hidden; border:1px solid #ccc;">
 ```{python}
 #correlations
 if cont_cols:
@@ -406,7 +414,9 @@ if cont_cols:
     plt.show()
 else:
     print("No continuous trait columns found in df2.")
+</div>
 ```
+
 :::
 
 ------------------------------------------------------------------------
