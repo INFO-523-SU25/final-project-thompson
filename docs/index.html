@@ -312,6 +312,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./presentation.html"> 
 <span class="menu-text">Presentation</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./citations.qmd"> 
+<span class="menu-text">Citations</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -371,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Will update abstract after working through the project…</p>
+<p>This project evaluates whether sexually selected traits can be used to classify animal taxa with machine learning, comparing binary presence/absence data against evolutionary origin rates. To reduce sparsity, phyla were grouped into five superphyla and modeled with decision trees, random forests, and logistic regression, using balanced accuracy and macro F1 to account for uneven classes. Exploratory analysis showed the binary dataset was sparse and dominated by Arthropoda, limiting predictive power, while the evolutionary dataset was more balanced but skewed and correlated. Results indicated that binary data performed poorly across all models, whereas evolutionary rates provided stronger signal, with logistic regression achieving the highest accuracy and macro F1. SHAP analysis confirmed that binary models relied almost entirely on the “sexually selected” flag, while evolutionary models distributed importance across visual, competition, auditory, and female choice traits. Overall, evolutionary rates offered more predictive value than binary presence. Problems seen in modelings would suggest the need for improved data quality and modeling approaches.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p><strong>Introduction</strong></p>
@@ -412,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Libraries version below:</p>
-<div id="07701d24" class="cell" data-execution_count="5">
+<div id="07701d24" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, json</span>
@@ -2802,6 +2806,8 @@ Random Forest           0.214  0.229     0.324  0.283     0.232  0.128</code></p
 <p><strong>Evolution_df (rate-based traits)</strong> Phyla are roughly balanced, but the rate features are skewed and correlated. Logistic regression does best (~50% accuracy, highest macro-F1); trees and forests trail. SHAP spreads importance across V, C, A, and F—no single rate dominates. The signal is better than in the binary data, but still limited.</p>
 <p><strong>Overall interpretation</strong></p>
 <p>Binary presence/absence doesn’t separate groups well and pushes models to lean on SS. Rate-based features carry more usable signal and lead to more balanced decisions, but overall performance is still modest.</p>
+<p>Important note for the project changes since the proposal:</p>
+<p>Compared to the proposal, the project shifted from predicting at the class/family level to using superphyla to reduce sparsity. Evolutionary rates were log-transformed and standardized instead of binarized, and evaluation emphasized balanced accuracy and macro F1 rather than ROC-AUC. Lastly, SHAP, originally planned as a secondary tool, became central in confirming trait reliance patterns across datasets.</p>
 <hr>
 
 
