@@ -1,5 +1,11 @@
 project:
   type: website
+  render:
+    - index.ipynb
+    - about.qmd
+    - proposal.qmd
+    - presentation.qmd
+    - data.qmd    
   output-dir: docs
 
 website:
@@ -12,7 +18,7 @@ website:
       - text: About
         href: about.qmd
       - text: Project
-        href: index.qmd
+        href: index.html
       - text: Data
         href: data.qmd
       - text: Proposal
