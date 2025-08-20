@@ -180,5 +180,26 @@
     "title": "Predicting Animal Phyla from Sexually Selected Traits",
     "section": "Thank you for listening!",
     "text": "Thank you for listening!"
+  },
+  {
+    "objectID": "citations.html",
+    "href": "citations.html",
+    "title": "Trait-Based Prediction of Animal Taxa",
+    "section": "",
+    "text": "Alipour, F., Holmes, C., Lu, Y. Y., Hill, K. A., & Kari, L. (2024). Leveraging machine learning for taxonomic classification of emerging astroviruses. Frontiers in Molecular Biosciences, 10. https://doi.org/10.3389/fmolb.2023.1305506\nAnimal. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Animal&oldid=1306191709\nCollins, A. G., Cartwright, P., McFadden, C. S., & Schierwater, B. (2005). Phylogenetic Context and Basal Metazoan Model Systems. Integrative and Comparative Biology, 45(4), 585–594. https://doi.org/10.1093/icb/45.4.585\nDeuterostome. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Deuterostome&oldid=1299664913\nEcdysozoa. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Ecdysozoa&oldid=1305526962\nLophotrochozoa. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Lophotrochozoa&oldid=1302526625\nTessler, M., Neumann, J. S., Kamm, K., Osigus, H.-J., Eshel, G., Narechania, A., Burns, J. A., DeSalle, R., & Schierwater, B. (2022). Phylogenomics and the first higher taxonomy of Placozoa, an ancient and enigmatic animal phylum. Frontiers in Ecology and Evolution, 10. https://doi.org/10.3389/fevo.2022.1016357\nvan der Gulik, P. T. S., Hoff, W. D., & Speijer, D. (2023). Renewing Linnaean taxonomy: A proposal to restructure the highest levels of the Natural System. Biological Reviews, 98(2), 584–602. https://doi.org/10.1111/brv.12920"
+  },
+  {
+    "objectID": "citations.html#all-sources-apa",
+    "href": "citations.html#all-sources-apa",
+    "title": "Trait-Based Prediction of Animal Taxa",
+    "section": "",
+    "text": "Alipour, F., Holmes, C., Lu, Y. Y., Hill, K. A., & Kari, L. (2024). Leveraging machine learning for taxonomic classification of emerging astroviruses. Frontiers in Molecular Biosciences, 10. https://doi.org/10.3389/fmolb.2023.1305506\nAnimal. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Animal&oldid=1306191709\nCollins, A. G., Cartwright, P., McFadden, C. S., & Schierwater, B. (2005). Phylogenetic Context and Basal Metazoan Model Systems. Integrative and Comparative Biology, 45(4), 585–594. https://doi.org/10.1093/icb/45.4.585\nDeuterostome. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Deuterostome&oldid=1299664913\nEcdysozoa. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Ecdysozoa&oldid=1305526962\nLophotrochozoa. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Lophotrochozoa&oldid=1302526625\nTessler, M., Neumann, J. S., Kamm, K., Osigus, H.-J., Eshel, G., Narechania, A., Burns, J. A., DeSalle, R., & Schierwater, B. (2022). Phylogenomics and the first higher taxonomy of Placozoa, an ancient and enigmatic animal phylum. Frontiers in Ecology and Evolution, 10. https://doi.org/10.3389/fevo.2022.1016357\nvan der Gulik, P. T. S., Hoff, W. D., & Speijer, D. (2023). Renewing Linnaean taxonomy: A proposal to restructure the highest levels of the Natural System. Biological Reviews, 98(2), 584–602. https://doi.org/10.1111/brv.12920"
+  },
+  {
+    "objectID": "citations.html#libraries-citations",
+    "href": "citations.html#libraries-citations",
+    "title": "Trait-Based Prediction of Animal Taxa",
+    "section": "Libraries Citations",
+    "text": "Libraries Citations\n\nNumPy documentation—NumPy v2.2 Manual. (n.d.). Retrieved August 20, 2025, from https://numpy.org/doc/2.2/\nos—Miscellaneous operating system interfaces. (n.d.). Python Documentation. Retrieved August 20, 2025, from https://docs.python.org/3/library/os.html\npandas documentation—Pandas 2.2.3 documentation. (n.d.). Retrieved August 20, 2025, from https://pandas.pydata.org/pandas-docs/version/2.2/\nPython 3.12 documentation. (n.d.). Python Documentation. Retrieved August 20, 2025, from https://docs.python.org/3/\nScikit-learn: Machine learning in Python—Scikit-learn 1.7.1 documentation. (n.d.). Retrieved August 20, 2025, from https://scikit-learn.org/stable/\nTeam, T. M. D. (2025). Matplotlib: Visualization with Python [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.14940554\nWaskom, M. L. (2021). seaborn: Statistical data visualization. Journal of Open Source Software, 6(60), 3021. https://doi.org/10.21105/joss.03021\nWelcome to the SHAP documentation—SHAP latest documentation. (n.d.). Retrieved August 20, 2025, from https://shap.readthedocs.io/en/latest/"
   }
 ]
