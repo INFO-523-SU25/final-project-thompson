@@ -1,3 +1,9 @@
+---
+title: "Citations"
+format:
+  html: default
+---
+
 ## All Sources (APA)
 1. Alipour, F., Holmes, C., Lu, Y. Y., Hill, K. A., & Kari, L. (2024). Leveraging machine learning for taxonomic classification of emerging astroviruses. Frontiers in Molecular Biosciences, 10. https://doi.org/10.3389/fmolb.2023.1305506
 2. Animal. (2025). In Wikipedia. https://en.wikipedia.org/w/index.php?title=Animal&oldid=1306191709
