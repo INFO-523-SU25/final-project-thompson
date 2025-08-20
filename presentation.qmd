@@ -52,7 +52,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 ```
 
-## Motivation & Research {data-incremental="false"}
+## Motivation & Questions {data-incremental="false"}
 
 ::: panel-tabset
 ### Objectives
@@ -137,6 +137,7 @@ id_cols = [c for c in ['Tree_Label'] if c in df1.columns]
 # numeric & categorical summaries:
 numeric_df = df1.select_dtypes(include='number')
 cat_df = df1.select_dtypes(include=['object','category'])
+
 ```
 
 ::: panel-tabset
@@ -144,10 +145,8 @@ cat_df = df1.select_dtypes(include=['object','category'])
 
 ```{python}
 ##### SUMMARY INFO numerics and categoricals
-# numeric & categorical summaries:
-numeric_df = df1.select_dtypes(include='number')
-cat_df = df1.select_dtypes(include=['object','category'])
 
+# numeric & categorical summaries:
 #prints summaries below
 if not numeric_df.empty:
     print("\nSummary (numeric):\n", numeric_df.describe().T)
@@ -160,31 +159,7 @@ else:
     print("\nNo categorical columns for categorical summary.")
 ```
 
-### Skewness {data-incremental="false"}
-
-```{python}
-# Skewness
-if not numeric_df.empty:
-    with np.errstate(all='ignore'):
-        skew_vals = numeric_df.drop(columns=id_cols, errors='ignore').skew(numeric_only=True)
-        print(skew_vals)
-else:
-    print("No numeric columns for skewness.")
-```
-
-### Kurtosis
-
-```{python}
-# kurtosis
-if not numeric_df.empty:
-    with np.errstate(all='ignore'):
-        kurt_vals = numeric_df.drop(columns=id_cols, errors='ignore').kurt(numeric_only=True)
-        print(kurt_vals)
-else:
-    print("No numeric columns for kurtosis.")
-```
-
-### Traits by Phylum (non-zero)
+### Traits by Phylum
 
 ```{python}
 #trait prevalence by phylum
@@ -203,8 +178,7 @@ print(filtered_prev)
 ## EDA - Family Plots
 
 ::: panel-tabset
-### Phylum Distribution {data-incremental="false"}
-
+### Distribution {data-incremental="false"}
 ```{python}
 if target_col:
     counts = df1[target_col].value_counts()
@@ -217,8 +191,21 @@ if target_col:
     plt.show()
 ```
 
-### Traits Histogram {data-incremental="false"}
+### Prevalence {data-incremental="false"}
+```{python}
+#prevalence of binary traits
+if traits_present:
+    prev = df1[traits_present].mean().sort_values(ascending=False)
+    plt.figure(figsize=(10,4))
+    plt.bar(prev.index, prev.values)
+    plt.title("Trait prevalence (proportion present)")
+    plt.ylabel("Prevalence")
+    plt.xlabel("Traits")
+    plt.xticks(rotation=45, ha='right')
+    plt.show()
+```
 
+### Binary Presence {data-incremental="false"}
 ```{python}
 binary_cols = [c for c in traits_present if c in df1.columns]
 
@@ -264,17 +251,155 @@ if corr is not None:
 
 ------------------------------------------------------------------------
 
-## EDA — Dataset 2
-
-\- \<Main EDA findings\>
-
-\- \*(Insert figure placeholder)\*
+## EDA — Evolution
 
 ```{python}
-#| label: fig-dataset2-eda
-# (placeholder code to generate visualization)
+#making a copy of evolution_df
+df2 = evolution_df.copy()
+
+# target and trait columns
+all_traits = ['A','G','O','T','V','C','F','K','M','S']  # continuous traits
+traits_present = [c for c in all_traits if c in df2.columns]
+target_col = 'Phylum' if 'Phylum' in df2.columns else None
+id_cols = [c for c in ['Tree'] if c in df2.columns]
+
+# numeric & categorical summaries
+numeric_df = df2.select_dtypes(include='number')
+cat_df = df2.select_dtypes(include=['object','category'])
 
 ```
+
+:::: panel-tabset
+### Summary {data-incremental="false"}
+```{python}
+if not numeric_df.empty:
+    print("\nSummary (numeric):\n", numeric_df.describe().T)
+else:
+    print("\nNo numeric columns for numeric summary.")
+
+if not cat_df.empty:
+    print("\nSummary (categorical):\n", cat_df.describe().T)
+else:
+    print("\nNo categorical columns for categorical summary.")
+
+```
+
+### Outliers {data-incremental="false"}
+```{python}
+#traits to scan (exclude ID/target)
+trait_cols = [c for c in df2.columns if c not in ["Tree", "Phylum"]]
+
+#IQR outlier finder (returns both high and low outliers)
+def find_outliers_iqr(d, col):
+    q1 = d[col].quantile(0.25)
+    q3 = d[col].quantile(0.75)
+    iqr = q3 - q1
+    lower = q1 - 1.5 * iqr
+    upper = q3 + 1.5 * iqr
+    out = d[(d[col] < lower) | (d[col] > upper)].copy()
+    out["OutlierSide"] = out[col].apply(lambda x: "low" if x < lower else "high")
+    out["Trait"] = col
+    return out[["Trait", "Phylum", col, "OutlierSide"]].rename(columns={col: "Value"})
+
+#dict of DataFrames per trait
+outlier_dict = {col: find_outliers_iqr(df2, col) for col in trait_cols}
+
+#tidy table of all outliers (stacked)
+outliers_tidy = pd.concat(outlier_dict.values(), ignore_index=True)
+
+#counts by trait
+outlier_counts_by_trait = (
+    outliers_tidy.groupby("Trait", as_index=False)
+    .size()
+    .rename(columns={"size": "n_outliers"})
+    .sort_values("n_outliers", ascending=False)
+)
+
+#phyla contributing outliers per trait
+phyla_per_trait = (
+    outliers_tidy.groupby("Trait")["Phylum"]
+    .apply(lambda s: ", ".join(sorted(s.unique())))
+    .reset_index(name="Phyla_with_outliers")
+)
+
+#combined into one summary
+outlier_summary = outlier_counts_by_trait.merge(phyla_per_trait, on="Trait", how="left")
+
+print("Outlier summary (IQR):")
+print(outlier_summary.to_string(index=False))
+
+```
+
+### Traits by Phylum {data-incremental="false"}
+```{python}
+#filter df2 trait means by phylum to only show > 0 values
+trait_means = df2.groupby("Phylum")[['A','G','O','T','V','C','F','K','M','S']].mean()
+filtered = trait_means[trait_means > 0].dropna(how="all")
+
+print("Non-zero trait means by phylum:\n")
+print(filtered)
+```
+::::
+
+------------------------------------------------------------------------
+
+## EDA - Evolution Plots
+
+::: panel-tabset
+### Distribution {data-incremental="false"}
+```{python}
+#phylum distribution
+if target_col:
+    counts = df2[target_col].value_counts()
+    plt.figure(figsize=(10,4))
+    plt.bar(counts.index, counts.values)
+    plt.title(f"{target_col} distribution")
+    plt.ylabel("Count")
+    plt.xticks(rotation=90)
+    plt.show()
+```
+
+### Prevalence {data-incremental="false"}
+
+```{python}
+#presence prevalence derived from rates (>0)
+if cont_cols:
+    presence = (df2[cont_cols] > 0).mean().sort_values(ascending=False)
+    plt.figure(figsize=(10,4))
+    plt.bar(presence.index, presence.values)
+    plt.title("Presence prevalence from rates (>0)")
+    plt.ylabel("Prevalence (mean)")
+    plt.xlabel("Traits")
+    plt.xticks(rotation=45, ha='right')
+    plt.show()
+```
+
+### Correlation Matrix {data-incremental="false"}
+
+```{python}
+#correlations
+cont_cols = [c for c in traits_present if c in df2.columns]
+if cont_cols:
+    corr = df2[cont_cols].corr().abs()
+    # Heatmap
+    plt.figure(figsize=(10, 7))
+    sns.heatmap(
+        corr,
+        annot=True,
+        cmap="coolwarm",
+        fmt=".2f",
+        linewidths=0.5,
+        cbar_kws={"shrink": 0.8, "label": "|r|"}
+    )
+    plt.title("Absolute Correlation Matrix — Evolution Traits", fontsize=14, pad=12)
+    plt.xticks(rotation=45, ha="right")
+    plt.yticks(rotation=0)
+    plt.tight_layout()
+    plt.show()
+else:
+    print("No continuous trait columns found in df2.")
+```
+::: 
 
 ------------------------------------------------------------------------
 
@@ -325,3 +450,5 @@ if corr is not None:
 ## References & Tools
 
 \- \<List references and tools\>
+:::
+::::
