@@ -27,7 +27,7 @@ website:
       - text: Presentation
         href: presentation.qmd
       - text: Citations
-        href: citations.qmd
+        href: citations.html
 
 format:
   html:
