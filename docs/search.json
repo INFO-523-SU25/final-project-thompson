@@ -88,7 +88,7 @@
     "href": "presentation.html#conclusion",
     "title": "Predicting Animal Phyla from Sexually Selected Traits",
     "section": "Conclusion",
-    "text": "Conclusion\n\nConclusion: evolution has stronger overall predictive power than family (binary)\nFuture works or potential applications:\n\nRemove SS traits and redo modeling\nImprove data quality\nConsider potential predictive signal overlaps\nDifferent models?\nSHAP applications to biological interpretations"
+    "text": "Conclusion\n\nConclusion: evolution has stronger overall predictive power than family (binary)\nFuture works or potential applications:\n\nRemove SS traits and redo modeling for family\nImprove data quality\nSHAP applications to biological interpretations"
   },
   {
     "objectID": "presentation.html#thank-you-for-listening",
