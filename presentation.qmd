@@ -65,7 +65,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 ------------------------------------------------------------------------
 
-## EDA - Family Plots
+## EDA - Family
 
 ```{python}
 import pandas as pd
@@ -192,62 +192,14 @@ if not numeric_df.empty:
             print(f"{col:5s}: {val: .4f}")
 else:
     print("\nNo numeric columns for skewness.")
-
 ```
-
-### Outliers {data-incremental="false"}
 
 ```{python}
 #traits to scan (exclude ID/target)
 trait_cols = [c for c in df2.columns if c not in ["Tree", "Phylum"]]
-
-#IQR outlier finder (returns both high and low outliers)
-def find_outliers_iqr(d, col):
-    q1 = d[col].quantile(0.25)
-    q3 = d[col].quantile(0.75)
-    iqr = q3 - q1
-    lower = q1 - 1.5 * iqr
-    upper = q3 + 1.5 * iqr
-    out = d[(d[col] < lower) | (d[col] > upper)].copy()
-    out["OutlierSide"] = out[col].apply(lambda x: "low" if x < lower else "high")
-    out["Trait"] = col
-    return out[["Trait", "Phylum", col, "OutlierSide"]].rename(columns={col: "Value"})
-
-#dict of DataFrames per trait
-outlier_dict = {col: find_outliers_iqr(df2, col) for col in trait_cols}
-
-#tidy table of all outliers (stacked)
-outliers_tidy = pd.concat(outlier_dict.values(), ignore_index=True)
-
-#counts by trait
-outlier_counts_by_trait = (
-    outliers_tidy.groupby("Trait", as_index=False)
-    .size()
-    .rename(columns={"size": "n_outliers"})
-    .sort_values("n_outliers", ascending=False)
-)
-
-#phyla contributing outliers per trait
-phyla_per_trait = (
-    outliers_tidy.groupby("Trait")["Phylum"]
-    .apply(lambda s: ", ".join(sorted(s.unique())))
-    .reset_index(name="Phyla_with_outliers")
-)
-
-#combined into one summary
-outlier_summary = outlier_counts_by_trait.merge(phyla_per_trait, on="Trait", how="left")
-
-print("Outlier summary (IQR):")
-print(outlier_summary.to_string(index=False))
-
 ```
 :::
 
-------------------------------------------------------------------------
-
-## EDA - Evolution Plots
-
-::: panel-tabset
 ### Distribution {data-incremental="false"}
 
 ```{python}
@@ -277,31 +229,6 @@ if cont_cols:
     plt.xlabel("Traits")
     plt.xticks(rotation=45, ha='right')
     plt.show()
-```
-
-### Correlation Matrix {data-incremental="false"}
-
-```{python}
-#correlations
-if cont_cols:
-    corr = df2[cont_cols].corr().abs()
-    # Heatmap
-    plt.figure(figsize=(10, 7))
-    sns.heatmap(
-        corr,
-        annot=True,
-        cmap="coolwarm",
-        fmt=".2f",
-        linewidths=0.5,
-        cbar_kws={"shrink": 0.8, "label": "|r|"}
-    )
-    plt.title("Absolute Correlation Matrix — Evolution Traits", fontsize=14, pad=12)
-    plt.xticks(rotation=45, ha="right")
-    plt.yticks(rotation=0)
-    plt.tight_layout()
-    plt.show()
-else:
-    print("No continuous trait columns found in df2.")
 ```
 :::
 
