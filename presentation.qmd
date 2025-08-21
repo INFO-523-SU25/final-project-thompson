@@ -65,10 +65,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 ------------------------------------------------------------------------
 
-## Data Overview {data-incremental="false"}
-
-::: panel-tabset
-### Dataset Summary {data-incremental="false"}
+## EDA - Family Plots
 
 ```{python}
 import pandas as pd
@@ -80,23 +77,7 @@ family_path    = "/Users/matthewthompson/Documents/Academics/DS Masters Academic
 # load data
 evolution_df = pd.read_csv(evolution_path)
 family_df    = pd.read_csv(family_path)
-
-# shapes
-print("Evolution dataset shape:", evolution_df.shape)
-print("Family dataset shape:", family_df.shape)
-
-# info
-print("\nEvolution dataset info:")
-evolution_df.info()
-
-print("\nFamily dataset info:")
-family_df.info()
 ```
-:::
-
-------------------------------------------------------------------------
-
-## EDA - Family Plots
 
 ```{python}
 #family dataset below
