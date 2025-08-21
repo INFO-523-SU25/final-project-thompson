@@ -14,14 +14,10 @@ format:
   revealjs:
     theme: ['data/customtheming.scss']   
     slide-number: true
-    incremental: true
-    toc: true
-    toc-depth: 2
+    incremental: false
     transition: slide
-    controls: true
     progress: true
-    auto-animate: true
-    embed-resources: true              
+    auto-animate: true             
 
 editor: visual
 jupyter: python3
@@ -71,7 +67,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 ## Data Overview {data-incremental="false"}
 
-:::::: panel-tabset
+::: panel-tabset
 ### Dataset Summary {data-incremental="false"}
 
 ```{python}
@@ -96,8 +92,7 @@ evolution_df.info()
 print("\nFamily dataset info:")
 family_df.info()
 ```
-
-::::::
+:::
 
 ------------------------------------------------------------------------
 
