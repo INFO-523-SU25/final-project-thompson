@@ -53,7 +53,7 @@
     "href": "presentation.html#eda-evolution",
     "title": "Predicting Animal Phyla from Sexually Selected Traits",
     "section": "EDA — Evolution",
-    "text": "EDA — Evolution\n\nSkewnessOutliers\n\n\n\n\n\n=== Skewness ===\nA    :  3.5053\nG    :  9.0968\nO    :  3.3938\nT    :  4.4907\nV    :  4.2405\nC    :  3.4515\nF    :  3.4248\nK    :  4.0070\nM    :  3.8618\nS    :  5.0951\n\n\n\n\n\n\nOutlier summary (IQR):\nTrait  n_outliers            Phyla_with_outliers\n    C           9 Arthropoda, Chordata, Mollusca\n    V           9 Arthropoda, Chordata, Mollusca\n    A           6           Arthropoda, Chordata\n    F           6           Arthropoda, Chordata\n    K           6           Arthropoda, Chordata\n    M           6           Arthropoda, Chordata\n    O           6           Arthropoda, Chordata\n    T           6           Arthropoda, Chordata\n    G           3                     Arthropoda\n    S           3                     Arthropoda"
+    "text": "EDA — Evolution\n\nSkewnessDistributionPrevalence\n\n\n\n\n\n=== Skewness ===\nA    :  3.5053\nG    :  9.0968\nO    :  3.3938\nT    :  4.4907\nV    :  4.2405\nC    :  3.4515\nF    :  3.4248\nK    :  4.0070\nM    :  3.8618\nS    :  5.0951"
   },
   {
     "objectID": "presentation.html#eda---evolution-plots",
@@ -201,5 +201,12 @@
     "title": "Data",
     "section": "Data Types",
     "text": "Data Types\n\n\n\n\n\n\n\nColumn\nData Type\n\n\n\n\nTree\nint64 (integer)\n\n\nPhylum\nobject (string)\n\n\nA, G, O, T, V, C, F, K, M, S\nfloat64 (continuous, ≥ 0, with some zeros)\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nSource: https://frontiersin.figshare.com/articles/dataset/Data_Sheet_3_Evolution_of_sexually_selected_traits_across_animals_XLSX/21921510?file=38886321"
+  },
+  {
+    "objectID": "presentation.html#eda---family",
+    "href": "presentation.html#eda---family",
+    "title": "Predicting Animal Phyla from Sexually Selected Traits",
+    "section": "EDA - Family",
+    "text": "EDA - Family\n\nDistributionPrevalenceBinary Presence"
   }
 ]
