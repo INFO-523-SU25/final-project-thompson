@@ -25,7 +25,7 @@
     "href": "presentation.html#motivation-questions",
     "title": "Predicting Animal Phyla from Sexually Selected Traits",
     "section": "Motivation & Questions",
-    "text": "Motivation & Questions\n\nObjectivesResearch Questions\n\n\n\nChallenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)\n\nMachine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)\n\nPotential: narrow candidate taxa, save time, improve relevance\n\n\n\n\nHow accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?\n\nDo evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?"
+    "text": "Motivation & Questions\n\nObjectivesResearch Questions\n\n\n\nChallenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)\n\nMachine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)\n\nPotential: narrow candidate taxa and save time\n\n\n\n\nHow accurately can a machine learning model classify animal taxa based on the binary presence of sexually selected traits?\n\nDo evolutionary origin rates of sexual traits provide stronger predictive power than binary trait presence when classifying animal taxa?"
   },
   {
     "objectID": "presentation.html#data-overview",
