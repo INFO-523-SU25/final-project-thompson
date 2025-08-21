@@ -860,10 +860,8 @@ for rank in range(min(10, len(evo_feature_pretty))):
 
 -   **Conclusion**: evolution has stronger overall predictive power than family (binary)
 -   **Future works or potential applications**:
-    -   Remove SS traits and redo modeling
+    -   Remove SS traits and redo modeling for family
     -   Improve data quality
-    -   Consider potential predictive signal overlaps
-    -   Different models?
     -   SHAP applications to biological interpretations
 
 ------------------------------------------------------------------------
