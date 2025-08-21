@@ -96,7 +96,7 @@ family_df.info()
 
 ------------------------------------------------------------------------
 
-## EDA — Family
+## EDA - Family Plots
 
 ```{python}
 #family dataset below
@@ -113,25 +113,6 @@ numeric_df = df1.select_dtypes(include='number')
 cat_df = df1.select_dtypes(include=['object','category'])
 
 ```
-
-::: panel-tabset
-### Traits by Phylum
-
-```{python}
-#trait prevalence by phylum
-group_prev = df1.groupby("Phylum")[['SS','A','G','O','T','V','C','F','K','M','S']].mean()
-
-#filter to only show phylum × traits where prevalence > 0
-filtered_prev = group_prev[group_prev > 0].dropna(how="all")
-
-print("Non-zero trait prevalence by phylum (df1):\n")
-print(filtered_prev)
-```
-:::
-
-------------------------------------------------------------------------
-
-## EDA - Family Plots
 
 ::: panel-tabset
 ### Distribution {data-incremental="false"}
