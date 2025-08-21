@@ -55,7 +55,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 -   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)\
 -   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)\
--   Potential: narrow candidate taxa, save time, improve relevance
+-   Potential: narrow candidate taxa and save time
 
 ### Research Questions {data-incremental="false"}
 
