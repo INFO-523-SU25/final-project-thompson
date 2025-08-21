@@ -198,7 +198,6 @@ else:
 #traits to scan (exclude ID/target)
 trait_cols = [c for c in df2.columns if c not in ["Tree", "Phylum"]]
 ```
-:::
 
 ### Distribution {data-incremental="false"}
 
