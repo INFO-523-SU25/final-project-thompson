@@ -59,7 +59,6 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 -   Challenges in classification (Tessler et al., 2022; van der Gulik et al., 2023)\
 -   Machine learning for taxonomy is new, needs evaluation (Alipour et al., 2024)\
--   Stepping stone: refine models, improve performance\
 -   Potential: narrow candidate taxa, save time, improve relevance
 
 ### Research Questions {data-incremental="false"}
@@ -98,26 +97,6 @@ print("\nFamily dataset info:")
 family_df.info()
 ```
 
-### Sexually Selected Traits {data-incremental="false"}
-
-::::: columns
-::: {.column width="50%"}
--   **SS** — Any sexually selected trait
--   **A** — Auditory trait
--   **G** — Gustatory trait
--   **O** — Olfactory trait
--   **T** — Tactile trait
--   **V** — Visual trait\
-:::
-
-::: {.column width="50%"}
--   **C** — Male–male competition trait
--   **F** — Female choice trait
--   **K** — Female–female competition trait
--   **M** — Male choice trait
--   **S** — Intersexual conflict trait\
-:::
-:::::
 ::::::
 
 ------------------------------------------------------------------------
@@ -220,20 +199,6 @@ if binary_cols:
     plt.show()
 
 ```
-
-### Correlation Matrix {data-incremental="false"}
-
-```{python}
-if not numeric_df.empty:
-    corr = numeric_df.corr().abs()
-
-if corr is not None:
-    plt.figure(figsize=(8,6))
-    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", cbar=True)
-    plt.title("Absolute Correlation Matrix (Family dataset traits)")
-    plt.show()
-
-```
 :::
 
 ------------------------------------------------------------------------
@@ -318,15 +283,6 @@ outlier_summary = outlier_counts_by_trait.merge(phyla_per_trait, on="Trait", how
 print("Outlier summary (IQR):")
 print(outlier_summary.to_string(index=False))
 
-```
-
-### Traits by Phylum {data-incremental="false"}
-
-```{python}
-#filter df2 trait means by phylum to only show > 0 values
-trait_means = df2.groupby("Phylum")[['A','G','O','T','V','C','F','K','M','S']].mean()
-filtered = trait_means[trait_means > 0].dropna(how="all")
-print(filtered)
 ```
 :::
 
